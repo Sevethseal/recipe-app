@@ -12,16 +12,17 @@ const logOutUser = () => {
 };
 
 const sendPasswordResetEmail = (email) => {
-  return auth.sendPasswordResetEmail();
+  return auth.sendPasswordResetEmail(email);
 };
 const loginWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return auth.signInWithPopup(provider);
 };
 
-const subscribeToAuthChanges = (handleAuthChanges) => {
+const subscribeToAuthChanges = (handleAuthChanges, setLoading) => {
   auth.onAuthStateChanged((user) => {
     handleAuthChanges(user);
+    setLoading(false);
   });
 };
 
