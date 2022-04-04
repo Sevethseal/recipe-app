@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import { AuthWrapper } from "./components/AuthWrapper";
 import PrivateRoute from "./components/PrivateRoute";
 import NavBar from "./components/NavBar";
+import AddRecipes from "./pages/addRecipes";
 function App() {
   return (
     <Router>
@@ -18,6 +19,11 @@ function App() {
               exact
               path="home"
               element={<PrivateRoute component={Home} />}
+            />
+            <Route
+              exact
+              path="create"
+              element={<PrivateRoute component={AddRecipes} />}
             />
           </React.Fragment>
         </Routes>
