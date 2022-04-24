@@ -7,6 +7,7 @@ import { AuthWrapper } from "./components/AuthWrapper";
 import PrivateRoute from "./components/PrivateRoute";
 import NavBar from "./components/NavBar";
 import AddRecipes from "./pages/addRecipes";
+import ViewRecipes from "./pages/ViewRecipes";
 function App() {
   return (
     <Router>
@@ -22,8 +23,13 @@ function App() {
             />
             <Route
               exact
-              path="create"
+              path="/create"
               element={<PrivateRoute component={AddRecipes} />}
+            />
+            <Route
+              exact
+              path="view"
+              element={<PrivateRoute component={ViewRecipes} />}
             />
           </React.Fragment>
         </Routes>
