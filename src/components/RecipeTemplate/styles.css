@@ -1,0 +1,37 @@
+.recipe-template{
+    background:#9494b8;
+    padding: 10px;
+    width: 35rem;
+    margin-top:10px;
+    border-radius: 10px;
+    
+}
+.recipe-template >div{
+    background: white;
+    margin:10px ;
+    width: fit-content;
+    word-break: break-word;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    align-items: center;
+    border-radius: 8px;
+}
+.recipe-template label{
+    padding: 5px;
+    width: 6rem;
+    font-weight: bolder;
+}
+.ingredient{
+    border: 1px solid black;
+    padding: 3px;
+    border-radius: 8px;
+    background: #d1d1e0;
+    margin: 0 2px 0 2px;
+}
+.instruction{
+    width: 20rem;
+    max-height: 15rem;
+    overflow: auto;
+    padding-top: 5px;
+}
