@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
 
-const RecipeTemplate = ({ recipe }) => {
+const RecipeTemplate = ({ recipe, handleDelete }) => {
   const history = useNavigate();
   return (
     <div className="recipe-template" key={recipe.id}>
@@ -28,6 +28,7 @@ const RecipeTemplate = ({ recipe }) => {
       </div>
       <div>
         <button onClick={() => history(`/create?id=${recipe.id}`)}>Edit</button>
+        <button onClick={() => handleDelete(recipe.id)}>Delete</button>
       </div>
     </div>
   );

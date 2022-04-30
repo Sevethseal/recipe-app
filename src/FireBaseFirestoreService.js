@@ -1,21 +1,29 @@
 import firebase from "./FirebaseConfig";
 
-const firestore = firebase.firestore();
+const fireStore = firebase.firestore();
 
 const createDocument = (collection, document) => {
-  return firestore.collection(collection).add(document);
+  return fireStore.collection(collection).add(document);
 };
 const readDocument = (collection) => {
-  return firestore.collection(collection).get();
+  return fireStore.collection(collection).get();
 };
 const readUniqueDocument = (collection, id) => {
-  return firestore.collection(collection).doc(id).get();
+  return fireStore.collection(collection).doc(id).get();
+};
+const updateDocument = (collection, id, document) => {
+  return fireStore.collection(collection).doc(id).update(document);
+};
+const deleteDocument = (collection, id) => {
+  return fireStore.collection(collection).doc(id).delete();
 };
 
 const firebaseFirestoreService = {
   createDocument,
   readDocument,
   readUniqueDocument,
+  updateDocument,
+  deleteDocument,
 };
 
 export default firebaseFirestoreService;

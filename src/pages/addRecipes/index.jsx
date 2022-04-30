@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import useForm from "../../utils/useForm";
 import firebaseFirestoreService from "../../FireBaseFirestoreService";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 let initialData = {
   name: "",
   category: "",
@@ -13,16 +13,21 @@ let initialData = {
 
 const AddRecipes = () => {
   const { search } = useLocation();
+  const history = useNavigate();
   const [loading, setLoading] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const [tempIngredient, setTempIngredient] = useState("");
+  const [isUpdate, setIsUpdate] = useState(false);
   useEffect(() => {
     if (search) {
       getUniqueRecipe();
+      setIsUpdate(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const create = async () => {
+    const id = search.slice(4);
     setLoading(true);
     const finalData = {
       ...values,
@@ -30,14 +35,23 @@ const AddRecipes = () => {
       publishDate: values.publishDate,
       isPublished: new Date(values.publishDate) > new Date() ? false : true,
     };
-    try {
-      await firebaseFirestoreService.createDocument("recipes", finalData);
-    } catch (error) {
-      alert(error);
+    if (!isUpdate) {
+      try {
+        await firebaseFirestoreService.createDocument("recipes", finalData);
+      } catch (error) {
+        alert(error);
+      }
+    } else {
+      try {
+        await firebaseFirestoreService.updateDocument("recipes", id, finalData);
+      } catch (error) {
+        alert(error);
+      }
     }
     setLoading(false);
     setIngredients([]);
     setTempIngredient("");
+    history("/view");
   };
   const getUniqueRecipe = async () => {
     const id = search.slice(4);
@@ -78,6 +92,9 @@ const AddRecipes = () => {
   const deleteIngredients = (ingredient) => {
     const temp = [...ingredients];
     setIngredients(temp.filter((value) => value !== ingredient));
+  };
+  const handleCancel = () => {
+    history("/view");
   };
   console.log(search.slice(4), "jjjj");
   const IngredientTable = () => {
@@ -155,7 +172,6 @@ const AddRecipes = () => {
               required
             />
           </div>
-          {<IngredientTable />}
           <div>
             <label>Ingredient :</label>
             <input
@@ -168,10 +184,13 @@ const AddRecipes = () => {
               ADD
             </button>
           </div>
+          <div>{<IngredientTable />}</div>
           {search ? (
             <div>
-              <button>Update</button>
-              <button>Cancel</button>
+              <button type="submit">Update</button>
+              <button type="button" onClick={handleCancel}>
+                Cancel
+              </button>
             </div>
           ) : (
             <button type="submit">Submit</button>
