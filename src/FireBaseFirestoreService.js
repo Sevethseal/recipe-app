@@ -17,6 +17,13 @@ const updateDocument = (collection, id, document) => {
 const deleteDocument = (collection, id) => {
   return fireStore.collection(collection).doc(id).delete();
 };
+const queryHandler = (collection, queries) => {
+  console.log(queries);
+  return fireStore
+    .collection(collection)
+    .where(queries.field, queries.condition, queries.value)
+    .get();
+};
 
 const firebaseFirestoreService = {
   createDocument,
@@ -24,6 +31,7 @@ const firebaseFirestoreService = {
   readUniqueDocument,
   updateDocument,
   deleteDocument,
+  queryHandler,
 };
 
 export default firebaseFirestoreService;
