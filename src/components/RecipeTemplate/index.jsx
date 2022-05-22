@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
@@ -26,6 +27,13 @@ const RecipeTemplate = ({ recipe, handleDelete }) => {
         <label>Instruction:</label>
         <div className="instruction">{recipe.directions}</div>
       </div>
+      <>
+        {recipe.imageUrl && (
+          <div>
+            <img src={recipe.imageUrl} className="image" />
+          </div>
+        )}
+      </>
       <div>
         <button onClick={() => history(`/create?id=${recipe.id}`)}>Edit</button>
         <button onClick={() => handleDelete(recipe.id)}>Delete</button>

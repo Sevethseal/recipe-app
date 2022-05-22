@@ -9,38 +9,54 @@ const ViewRecipes = () => {
   const [isDelete, setIsDelete] = useState(false);
   const [byCategory, setByCategory] = useState("All");
   const [sortByOptions, setSortBy] = useState("Default");
-  const getAllRecipe = async () => {
-    let fetchedRecipes = [];
-    try {
-      const response = await firebaseFirestoreService.readDocument("recipes");
-      const recipes = response.docs.map((docValues) => {
-        const id = docValues.id;
-        const data = docValues.data();
-        return { ...data, id };
-      });
-      fetchedRecipes = [...recipes];
-    } catch (error) {
-      alert(error);
-    }
-    return fetchedRecipes;
-  };
   const getAllRecipeQueries = async () => {
     let fetchedRecipes = [];
+    let sortOption = "";
+    const orderByField = "publishDate";
+    switch (sortByOptions) {
+      case "Newest-oldest": {
+        sortOption = "desc";
+        break;
+      }
+      case "Oldest-Newest": {
+        sortOption = "asc";
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+
     try {
-      const response = await firebaseFirestoreService.queryHandler("recipes", {
-        field: "category",
-        condition: "==",
-        value: byCategory,
-      });
+      let response;
+      if (byCategory !== "All") {
+        response = await firebaseFirestoreService.readDocument(
+          "recipes",
+          [
+            {
+              field: "category",
+              condition: "==",
+              value: byCategory,
+            },
+          ],
+          orderByField,
+          sortOption
+        );
+      } else {
+        response = await firebaseFirestoreService.readDocument(
+          "recipes",
+          [],
+          orderByField,
+          sortOption
+        );
+      }
       const recipes = response.docs.map((docValues) => {
         const id = docValues.id;
         const data = docValues.data();
         return { ...data, id };
       });
       fetchedRecipes = [...recipes];
-    } catch (error) {
-      alert(error);
-    }
+    } catch (error) {}
     return fetchedRecipes;
   };
 
@@ -53,27 +69,20 @@ const ViewRecipes = () => {
     }
     setIsDelete(false);
   };
-  const handleGetAllRecipe = async () => {
-    const fetchedRecipes = await getAllRecipe();
-    setRecipes(fetchedRecipes);
-  };
   const handleGetAllRecipeQueries = async () => {
     const fetchedRecipes = await getAllRecipeQueries();
     setRecipes(fetchedRecipes);
   };
   useEffect(() => {
-    console.log(byCategory === "ALL", "byCategory");
     if (!isDelete) {
       if (byCategory === "All") {
-        handleGetAllRecipe();
-        console.log("case1", byCategory);
+        handleGetAllRecipeQueries();
       } else {
-        console.log("case2", byCategory);
         handleGetAllRecipeQueries();
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDelete, byCategory]);
+  }, [isDelete, byCategory, sortByOptions]);
   return (
     <div>
       <div>

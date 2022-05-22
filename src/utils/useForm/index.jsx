@@ -14,7 +14,10 @@ const useForm = (initialData, submitCallBack) => {
       [e.target.name]: e.target.value,
     }));
   };
-  return [values, handleChange, submit, setValues];
+  const clearForm = () => {
+    setValues(null);
+  };
+  return [values, handleChange, submit, setValues, clearForm];
 };
 
 export default useForm;

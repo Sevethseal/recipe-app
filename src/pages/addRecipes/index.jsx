@@ -3,6 +3,7 @@ import "./styles.css";
 import useForm from "../../utils/useForm";
 import firebaseFirestoreService from "../../FireBaseFirestoreService";
 import { useLocation, useNavigate } from "react-router-dom";
+import FileUploadComponent from "../../components/FileUploadComponent";
 let initialData = {
   name: "",
   category: "",
@@ -18,13 +19,24 @@ const AddRecipes = () => {
   const [ingredients, setIngredients] = useState([]);
   const [tempIngredient, setTempIngredient] = useState("");
   const [isUpdate, setIsUpdate] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
   useEffect(() => {
     if (search) {
       getUniqueRecipe();
       setIsUpdate(true);
+    } else {
+      setValues({
+        name: "",
+        category: "",
+        directions: "",
+        publishDate: "",
+        ingredient: [],
+      });
+      setIngredients([]);
+      setTempIngredient("");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [search]);
 
   const create = async () => {
     const id = search.slice(4);
@@ -34,6 +46,7 @@ const AddRecipes = () => {
       ingredient: ingredients,
       publishDate: values.publishDate,
       isPublished: new Date(values.publishDate) > new Date() ? false : true,
+      imageUrl: imageUrl,
     };
     if (!isUpdate) {
       try {
@@ -60,7 +73,6 @@ const AddRecipes = () => {
         "recipes",
         id
       );
-      console.log(response.data(), "response");
 
       const { category, directions, ingredient, name, publishDate } =
         response.data();
@@ -96,7 +108,6 @@ const AddRecipes = () => {
   const handleCancel = () => {
     history("/view");
   };
-  console.log(search.slice(4), "jjjj");
   const IngredientTable = () => {
     return (
       <div>
@@ -172,6 +183,12 @@ const AddRecipes = () => {
               required
             />
           </div>
+          <FileUploadComponent
+            basePath={"recipes"}
+            existingUrl={imageUrl}
+            handleUploadFinish={(newUrl) => setImageUrl(newUrl)}
+            handleUploadCancel={() => setImageUrl("")}
+          />
           <div>
             <label>Ingredient :</label>
             <input
