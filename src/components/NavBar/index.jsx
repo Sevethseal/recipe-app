@@ -13,12 +13,11 @@ const NavBar = () => {
         history("/about");
         break;
       case "RECIPES":
-        history("/about");
+        history("/view");
         break;
       case "ADD RECIPES":
         history("/create");
         break;
-
       default:
         history("/home");
     }

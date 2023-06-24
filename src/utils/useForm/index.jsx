@@ -1,9 +1,10 @@
 import { useState } from "react";
-const useForm = (submitCallBack) => {
-  const [values, setValues] = useState({});
+const useForm = (initialData, submitCallBack) => {
+  const [values, setValues] = useState(initialData);
   const submit = (e) => {
     e.preventDefault();
     submitCallBack();
+    setValues(initialData);
   };
   const handleChange = (e) => {
     e.preventDefault();
@@ -13,7 +14,10 @@ const useForm = (submitCallBack) => {
       [e.target.name]: e.target.value,
     }));
   };
-  return [values, handleChange, submit];
+  const clearForm = () => {
+    setValues(null);
+  };
+  return [values, handleChange, submit, setValues, clearForm];
 };
 
 export default useForm;
