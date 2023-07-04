@@ -21,7 +21,11 @@ const loginWithGoogle = () => {
 
 const subscribeToAuthChanges = (handleAuthChanges, setLoading) => {
   auth.onAuthStateChanged((user) => {
-    handleAuthChanges(user);
+    if (user) {
+      handleAuthChanges(true);
+    } else {
+      handleAuthChanges(false);
+    }
     setLoading(false);
   });
 };

@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import RecipeTemplate from "../../components/RecipeTemplate";
-import firebaseFirestoreService from "../../FireBaseFirestoreService";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteRecipe } from "../../sagas/reducer/recipe";
+import { fetchRecipeList } from "../../sagas/reducer/recipeList";
 import { AllCategory, sortBy } from "./view";
 import "./styles.css";
 
 const ViewRecipes = () => {
   const [recipes, setRecipes] = useState([]);
-  const [isDelete, setIsDelete] = useState(false);
   const [byCategory, setByCategory] = useState("All");
   const [sortByOptions, setSortBy] = useState("Default");
-  const getAllRecipeQueries = async () => {
-    let fetchedRecipes = [];
+  const dispatch = useDispatch();
+  const recipeListResponse = useSelector(
+    (state) => state.recipeList.recipeListResponse
+  );
+
+  const getAllRecipeQueries = () => {
     let sortOption = "";
     const orderByField = "publishDate";
     switch (sortByOptions) {
@@ -27,11 +32,9 @@ const ViewRecipes = () => {
       }
     }
 
-    try {
-      let response;
-      if (byCategory !== "All") {
-        response = await firebaseFirestoreService.readDocument(
-          "recipes",
+    if (byCategory !== "All") {
+      dispatch(
+        fetchRecipeList(
           [
             {
               field: "category",
@@ -41,48 +44,37 @@ const ViewRecipes = () => {
           ],
           orderByField,
           sortOption
-        );
-      } else {
-        response = await firebaseFirestoreService.readDocument(
-          "recipes",
-          [],
-          orderByField,
-          sortOption
-        );
-      }
-      const recipes = response.docs.map((docValues) => {
+        )
+      );
+    } else {
+      dispatch(fetchRecipeList([], orderByField, sortOption));
+    }
+  };
+
+  const handleDelete = (id) => {
+    dispatch(deleteRecipe(id));
+    getAllRecipeQueries();
+  };
+
+  useEffect(() => {
+    if (byCategory === "All") {
+      getAllRecipeQueries();
+    } else {
+      getAllRecipeQueries();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [byCategory, sortByOptions]);
+  useEffect(() => {
+    if (recipeListResponse) {
+      const recipes = recipeListResponse.docs.map((docValues) => {
         const id = docValues.id;
         const data = docValues.data();
         return { ...data, id };
       });
-      fetchedRecipes = [...recipes];
-    } catch (error) {}
-    return fetchedRecipes;
-  };
-
-  const handleDelete = async (id) => {
-    setIsDelete(true);
-    try {
-      await firebaseFirestoreService.deleteDocument("recipes", id);
-    } catch (error) {
-      alert(error);
+      setRecipes([...recipes]);
     }
-    setIsDelete(false);
-  };
-  const handleGetAllRecipeQueries = async () => {
-    const fetchedRecipes = await getAllRecipeQueries();
-    setRecipes(fetchedRecipes);
-  };
-  useEffect(() => {
-    if (!isDelete) {
-      if (byCategory === "All") {
-        handleGetAllRecipeQueries();
-      } else {
-        handleGetAllRecipeQueries();
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDelete, byCategory, sortByOptions]);
+  }, [recipeListResponse]);
   return (
     <div>
       <div>
@@ -112,7 +104,6 @@ const ViewRecipes = () => {
         </div>
       </div>
       <div className="view-recipes">
-        {isDelete && <h2>Updating</h2>}
         {recipes &&
           recipes.map((recipe, index) => (
             <RecipeTemplate

@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css";
 import useForm from "../../utils/useForm";
-import firebaseFirestoreService from "../../FireBaseFirestoreService";
 import { useLocation, useNavigate } from "react-router-dom";
 import FileUploadComponent from "../../components/FileUploadComponent";
+import {
+  fetchRecipe,
+  createRecipe,
+  updateRecipe,
+  clearRecipe,
+} from "../../sagas/reducer/recipe";
+import { useDispatch, useSelector } from "react-redux";
 let initialData = {
   name: "",
   category: "",
@@ -20,8 +26,40 @@ const AddRecipes = () => {
   const [tempIngredient, setTempIngredient] = useState("");
   const [isUpdate, setIsUpdate] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
+  const dispatch = useDispatch();
+  const uniqueRecipeResponse = useSelector(
+    (state) => state.uniqueRecipe.recipe
+  );
+  const id = search.slice(4);
+  const getUniqueRecipe = () => {
+    if (uniqueRecipeResponse) {
+      const { category, directions, ingredient, name, publishDate } =
+        uniqueRecipeResponse.data();
+      initialData = {
+        name,
+        category,
+        directions,
+        publishDate,
+      };
+      setIngredients(ingredient);
+      setValues(initialData);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearRecipe());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     if (search) {
+      dispatch(fetchRecipe(id));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search]);
+  useEffect(() => {
+    if (uniqueRecipeResponse) {
       getUniqueRecipe();
       setIsUpdate(true);
     } else {
@@ -36,7 +74,7 @@ const AddRecipes = () => {
       setTempIngredient("");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
+  }, [search, uniqueRecipeResponse]);
 
   const create = async () => {
     const id = search.slice(4);
@@ -49,45 +87,16 @@ const AddRecipes = () => {
       imageUrl: imageUrl,
     };
     if (!isUpdate) {
-      try {
-        await firebaseFirestoreService.createDocument("recipes", finalData);
-      } catch (error) {
-        alert(error);
-      }
+      dispatch(createRecipe(finalData));
     } else {
-      try {
-        await firebaseFirestoreService.updateDocument("recipes", id, finalData);
-      } catch (error) {
-        alert(error);
-      }
+      dispatch(updateRecipe(id, finalData));
     }
     setLoading(false);
     setIngredients([]);
     setTempIngredient("");
     history("/view");
   };
-  const getUniqueRecipe = async () => {
-    const id = search.slice(4);
-    try {
-      const response = await firebaseFirestoreService.readUniqueDocument(
-        "recipes",
-        id
-      );
 
-      const { category, directions, ingredient, name, publishDate } =
-        response.data();
-      initialData = {
-        name,
-        category,
-        directions,
-        publishDate,
-      };
-      setIngredients(ingredient);
-      setValues(initialData);
-    } catch (error) {
-      alert(error);
-    }
-  };
   const [values, handleChange, submit, setValues] = useForm(
     initialData,
     create
