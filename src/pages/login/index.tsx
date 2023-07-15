@@ -1,42 +1,44 @@
-import React, { useState } from "react";
-import FireBaseAuthService from "../../FireBaseAuthService";
-import { useAuth } from "../../components/AuthWrapper";
-import { useNavigate } from "react-router-dom";
-import "./style.css";
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState } from 'react'
+import FireBaseAuthService from '../../FireBaseAuthService'
+import { useAuth } from '../../components/AuthWrapper'
+import { useNavigate } from 'react-router-dom'
+import './style.css'
 
 const Login = () => {
   // eslint-disable-next-line no-unused-vars
-  const [user, setUser] = useState(null);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const history = useNavigate();
-  const { authenticatedLogin, authenticatedLoginGoogle } = useAuth();
-  const LoginUser = async (e) => {
-    e.preventDefault();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const history = useNavigate()
+  const { authenticatedLogin, authenticatedLoginGoogle } = useAuth()
+  const LoginUser = async (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault()
     if (email && password) {
-      await authenticatedLogin(email, password);
-      history("/home");
+      await authenticatedLogin(email, password)
+      history('/home')
     } else {
-      alert("fill email and password");
+      alert('fill email and password')
     }
-  };
+  }
   const LoginGoogle = async () => {
-    await authenticatedLoginGoogle();
-    history("/home");
-  };
-  const handleResetPassword = async (e) => {
-    e.preventDefault();
+    await authenticatedLoginGoogle()
+    history('/home')
+  }
+  const handleResetPassword = async (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault()
     if (!email) {
-      alert("user name missing");
+      alert('user name missing')
     } else {
       try {
-        await FireBaseAuthService.sendPasswordResetEmail(email);
-        alert("reset email sent to your email");
-      } catch (error) {
-        alert(error.message);
+        await FireBaseAuthService.sendPasswordResetEmail(email)
+        alert('reset email sent to your email')
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        alert(error.message)
       }
     }
-  };
+  }
   return (
     <div className="login">
       <div className="login-section">
@@ -51,7 +53,7 @@ const Login = () => {
               </div>
               <div>
                 <input
-                  type={"email"}
+                  type={'email'}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
@@ -60,7 +62,7 @@ const Login = () => {
             <div className="login__align">
               <label>Password</label>
               <input
-                type={"password"}
+                type={'password'}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
@@ -80,7 +82,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

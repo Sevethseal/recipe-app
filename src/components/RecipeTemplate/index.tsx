@@ -1,10 +1,13 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
-import "./styles.css";
-import { useNavigate } from "react-router-dom";
+import React from 'react'
+import './styles.css'
+import { useNavigate } from 'react-router-dom'
+import { RecipeTemplateProps } from './types'
 
-const RecipeTemplate = ({ recipe, handleDelete }) => {
-  const history = useNavigate();
+const RecipeTemplate = ({ recipe, handleDelete }: RecipeTemplateProps) => {
+  const history = useNavigate()
   return (
     <div className="recipe-template" key={recipe.id}>
       <div>
@@ -39,7 +42,7 @@ const RecipeTemplate = ({ recipe, handleDelete }) => {
         <button onClick={() => handleDelete(recipe.id)}>Delete</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default RecipeTemplate;
+export default RecipeTemplate
