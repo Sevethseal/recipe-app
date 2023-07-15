@@ -15,14 +15,14 @@ import {
   authenticatedLoginSaga,
   authenticatedLoginGoogleSaga,
   logOutSaga,
-} from "../saga/login";
+} from "./login";
 import {
   fetchRecipeSaga,
   createRecipeSaga,
   updateRecipeSaga,
   deleteRecipeSaga,
-} from "../saga/recipe";
-import { fetchRecipeListSaga } from "../saga/recipeList";
+} from "./recipe";
+import { fetchRecipeListSaga } from "./recipeList";
 
 function* mySaga() {
   yield takeLatest(CREATE_LOGIN_ACTION, authenticatedLoginSaga);

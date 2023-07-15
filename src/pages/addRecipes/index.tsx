@@ -1,122 +1,125 @@
-import React, { useState, useEffect } from "react";
-import "./styles.css";
-import useForm from "../../utils/useForm";
-import { useLocation, useNavigate } from "react-router-dom";
-import FileUploadComponent from "../../components/FileUploadComponent";
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState, useEffect, ChangeEventHandler } from 'react'
+import './styles.css'
+
+import { useLocation, useNavigate } from 'react-router-dom'
+import FileUploadComponent from '../../components/FileUploadComponent'
 import {
   fetchRecipe,
   createRecipe,
   updateRecipe,
   clearRecipe,
-} from "../../sagas/reducer/recipe";
-import { useDispatch, useSelector } from "react-redux";
-let initialData = {
-  name: "",
-  category: "",
-  directions: "",
-  publishDate: "",
+} from '../../sagas/reducer/recipe'
+import { useDispatch, useSelector } from 'react-redux'
+import { AddRecipeFormModel } from './types'
+import useForm from '../../utils/useForm'
+import { ReduxState } from '../../sagas/reducer/types'
+let initialData: AddRecipeFormModel = {
+  name: '',
+  category: '',
+  directions: '',
+  publishDate: '',
   ingredient: [],
-};
+}
 
 const AddRecipes = () => {
-  const { search } = useLocation();
-  const history = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [ingredients, setIngredients] = useState([]);
-  const [tempIngredient, setTempIngredient] = useState("");
-  const [isUpdate, setIsUpdate] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
-  const dispatch = useDispatch();
+  const { search } = useLocation()
+  const history = useNavigate()
+  const [loading, setLoading] = useState(false)
+  const [ingredients, setIngredients] = useState<string[]>([])
+  const [tempIngredient, setTempIngredient] = useState('')
+  const [isUpdate, setIsUpdate] = useState(false)
+  const [imageUrl, setImageUrl] = useState<string | undefined>('')
+  const dispatch = useDispatch()
   const uniqueRecipeResponse = useSelector(
-    (state) => state.uniqueRecipe.recipe
-  );
-  const id = search.slice(4);
+    (state: ReduxState) => state.uniqueRecipe.recipe
+  )
+  const id = search.slice(4)
   const getUniqueRecipe = () => {
     if (uniqueRecipeResponse) {
       const { category, directions, ingredient, name, publishDate } =
-        uniqueRecipeResponse.data();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (uniqueRecipeResponse as any).data()
       initialData = {
         name,
         category,
         directions,
         publishDate,
-      };
-      setIngredients(ingredient);
-      setValues(initialData);
+      }
+      setIngredients(ingredient)
+      setValues(initialData)
     }
-  };
+  }
 
   useEffect(() => {
     return () => {
-      dispatch(clearRecipe());
-    };
+      dispatch(clearRecipe())
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
   useEffect(() => {
     if (search) {
-      dispatch(fetchRecipe(id));
+      dispatch(fetchRecipe(id))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
+  }, [search])
   useEffect(() => {
     if (uniqueRecipeResponse) {
-      getUniqueRecipe();
-      setIsUpdate(true);
+      getUniqueRecipe()
+      setIsUpdate(true)
     } else {
       setValues({
-        name: "",
-        category: "",
-        directions: "",
-        publishDate: "",
+        name: '',
+        category: '',
+        directions: '',
+        publishDate: '',
         ingredient: [],
-      });
-      setIngredients([]);
-      setTempIngredient("");
+      })
+      setIngredients([])
+      setTempIngredient('')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, uniqueRecipeResponse]);
+  }, [search, uniqueRecipeResponse])
 
   const create = async () => {
-    const id = search.slice(4);
-    setLoading(true);
+    const id = search.slice(4)
+    setLoading(true)
     const finalData = {
       ...values,
       ingredient: ingredients,
       publishDate: values.publishDate,
       isPublished: new Date(values.publishDate) > new Date() ? false : true,
       imageUrl: imageUrl,
-    };
-    if (!isUpdate) {
-      dispatch(createRecipe(finalData));
-    } else {
-      dispatch(updateRecipe(id, finalData));
     }
-    setLoading(false);
-    setIngredients([]);
-    setTempIngredient("");
-    history("/view");
-  };
+    if (!isUpdate) {
+      dispatch(createRecipe(finalData))
+    } else {
+      dispatch(updateRecipe(id, finalData))
+    }
+    setLoading(false)
+    setIngredients([])
+    setTempIngredient('')
+    history('/view')
+  }
 
-  const [values, handleChange, submit, setValues] = useForm(
-    initialData,
-    create
-  );
+  const [values, handleChange, submit, setValues] = useForm(initialData, create)
 
   const addIngredients = () => {
-    setIngredients((prev) => [...prev, tempIngredient]);
-    setTempIngredient("");
-  };
+    setIngredients((prev) => [...prev, tempIngredient])
+    setTempIngredient('')
+  }
 
-  const tempIngredientHandling = (e) => {
-    setTempIngredient(e.target.value);
-  };
-  const deleteIngredients = (ingredient) => {
-    const temp = [...ingredients];
-    setIngredients(temp.filter((value) => value !== ingredient));
-  };
+  const tempIngredientHandling = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTempIngredient(e.target.value)
+  }
+  const deleteIngredients = (ingredient: string) => {
+    const temp = [...ingredients]
+    setIngredients(temp.filter((value) => value !== ingredient))
+  }
   const handleCancel = () => {
-    history("/view");
-  };
+    history('/view')
+  }
   const IngredientTable = () => {
     return (
       <div>
@@ -144,8 +147,8 @@ const AddRecipes = () => {
           </tbody>
         </table>
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <div className="recipe-container">
@@ -155,7 +158,7 @@ const AddRecipes = () => {
           <div>
             <label>Recipe Name :</label>
             <input
-              type={"text"}
+              type={'text'}
               onChange={handleChange}
               name="name"
               value={values.name}
@@ -165,7 +168,7 @@ const AddRecipes = () => {
           <div>
             <label>Category :</label>
             <input
-              type={"text"}
+              type={'text'}
               name="category"
               onChange={handleChange}
               value={values.category}
@@ -175,9 +178,10 @@ const AddRecipes = () => {
           <div>
             <label>Directions :</label>
             <textarea
-              type={"text"}
               name="directions"
-              onChange={handleChange}
+              onChange={
+                handleChange as unknown as ChangeEventHandler<HTMLTextAreaElement>
+              }
               value={values.directions}
               required
             />
@@ -185,7 +189,7 @@ const AddRecipes = () => {
           <div>
             <label>Publish Date :</label>
             <input
-              type={"date"}
+              type={'date'}
               name="publishDate"
               onChange={handleChange}
               value={values.publishDate}
@@ -193,15 +197,15 @@ const AddRecipes = () => {
             />
           </div>
           <FileUploadComponent
-            basePath={"recipes"}
-            existingUrl={imageUrl}
+            basePath={'recipes'}
+            existingUrl={imageUrl as string}
             handleUploadFinish={(newUrl) => setImageUrl(newUrl)}
-            handleUploadCancel={() => setImageUrl("")}
+            handleUploadCancel={() => setImageUrl('')}
           />
           <div>
             <label>Ingredient :</label>
             <input
-              type={"text"}
+              type={'text'}
               name="ingredient"
               onChange={tempIngredientHandling}
               value={tempIngredient}
@@ -221,11 +225,11 @@ const AddRecipes = () => {
           ) : (
             <button type="submit">Submit</button>
           )}
-          {loading && <div style={{ color: "red" }}>Updating</div>}
+          {loading && <div style={{ color: 'red' }}>Updating</div>}
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AddRecipes;
+export default AddRecipes
