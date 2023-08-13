@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import FireBaseAuthService from '../../FireBaseAuthService'
 import { useAuth } from '../../components/AuthWrapper'
 import { useNavigate } from 'react-router-dom'
+import { Box, TextField, Button, Typography } from '@mui/material'
+import loginCover from '../../assets/loginCover.jpg'
 import './style.css'
 
 const Login = () => {
@@ -16,14 +18,14 @@ const Login = () => {
     e.preventDefault()
     if (email && password) {
       await authenticatedLogin(email, password)
-      history('/home')
+      history('/about')
     } else {
       alert('fill email and password')
     }
   }
   const LoginGoogle = async () => {
     await authenticatedLoginGoogle()
-    history('/home')
+    history('/about')
   }
   const handleResetPassword = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
@@ -39,48 +41,87 @@ const Login = () => {
       }
     }
   }
+
   return (
     <div className="login">
-      <div className="login-section">
-        <div className="login__heading-wrapper">
-          <div className="login__heading">Firebase Recipes</div>
-        </div>
-        <div className="login__credential">
+      <Box className="login__section">
+        <Box className="login__credential">
+          <Box>
+            <Typography classes={{ root: 'login__sub-heading' }}>
+              Good Food
+            </Typography>
+            <Box className="login__text-wrapper">
+              <Typography classes={{ root: 'login__text' }}>
+                WELCOME, ENJOY THE BEST RECIPES
+              </Typography>
+            </Box>
+          </Box>
           <form>
-            <div className="login__align">
-              <div>
-                <label>Username(email)</label>
-              </div>
-              <div>
-                <input
-                  type={'email'}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-            <div className="login__align">
-              <label>Password</label>
-              <input
-                type={'password'}
-                onChange={(e) => setPassword(e.target.value)}
-                required
+            <Box className="login__details">
+              <Typography classes={{ root: 'login__sub-heading' }}>
+                Login / SignUp
+              </Typography>
+              <TextField
+                id="Email"
+                label="Email"
+                variant="outlined"
+                onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
-            <div className="login__button-section">
-              <button type="submit" onClick={(e) => LoginUser(e)}>
-                Login
-              </button>
-              <button type="submit" onClick={handleResetPassword}>
-                ResetEmail
-              </button>
-              <button type="button" onClick={LoginGoogle}>
-                Login with Google
-              </button>
-            </div>
+              <TextField
+                id="Password"
+                label="Password"
+                variant="outlined"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <div className="login__button-section">
+                <Button
+                  size="small"
+                  type="submit"
+                  variant="outlined"
+                  onClick={(e) => LoginUser(e)}
+                  style={{
+                    border: '1px solid black',
+                    color: 'black',
+                    font: 'Prata',
+                  }}
+                >
+                  login
+                </Button>
+                <Button
+                  type="submit"
+                  variant="outlined"
+                  onClick={handleResetPassword}
+                  style={{
+                    border: '1px solid black',
+                    color: 'black',
+                    font: 'Prata',
+                  }}
+                >
+                  Reset Password
+                </Button>
+                <Button
+                  variant="outlined"
+                  onClick={LoginGoogle}
+                  style={{
+                    border: '1px solid black',
+                    color: 'black',
+                    font: 'Prata',
+                  }}
+                >
+                  login via Google
+                </Button>
+              </div>
+            </Box>
           </form>
-        </div>
-      </div>
+        </Box>
+        <Box className="login__cover-image-wrapper">
+          <img
+            src={loginCover}
+            alt="loginCover"
+            className="login__cover-image"
+          />
+        </Box>
+      </Box>
     </div>
   )
 }

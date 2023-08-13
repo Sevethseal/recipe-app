@@ -1,7 +1,8 @@
 .App {
   text-align: center;
 }
-
-
-
-
+body,
+html {
+  width: 100%;
+  overflow: hidden;
+}

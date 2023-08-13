@@ -8,6 +8,8 @@ import { fetchRecipeList } from '../../sagas/reducer/recipeList'
 import { AllCategory, sortBy } from './view'
 import './styles.css'
 import { ReduxState } from '../../sagas/reducer/types'
+import Carousel from 'react-spring-3d-carousel'
+import { MenuItem, TextField, Stack } from '@mui/material'
 
 const ViewRecipes = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -80,44 +82,147 @@ const ViewRecipes = () => {
       setRecipes([...recipes])
     }
   }, [recipeListResponse])
+
+  const list =
+    recipes &&
+    recipes.map((recipe, index) => {
+      return {
+        key: index,
+        content: (
+          <RecipeTemplate
+            recipe={recipe}
+            key={index}
+            handleDelete={handleDelete}
+          />
+        ),
+      }
+    })
   return (
-    <div>
+    <div className="view-recipes">
       <div>
         <div className="sort">
           <div>
-            <label>By Category :</label>
-            <select
+            <TextField
               value={byCategory}
               onChange={(e) => setByCategory(e.target.value)}
+              select
+              sx={{
+                backgroundColor: 'transparent',
+                minWidth: '10rem',
+                '& label.Mui-focused': {
+                  color: 'white',
+                },
+                '& .MuiInput-underline:after': {
+                  borderBottomColor: 'white',
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'white',
+                },
+                '& .MuiOutlinedInput-input': {
+                  color: 'white',
+                },
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: 'white',
+                  },
+                },
+                '& .MuiOutlinedInput-root:hover': {
+                  borderColor: 'white',
+                },
+              }}
+              label="By Category"
+              color="secondary"
+              fullWidth
             >
               {AllCategory.map((category, index) => (
-                <option key={index}>{category}</option>
+                <MenuItem
+                  key={index}
+                  value={category}
+                  sx={{
+                    backgroundColor: 'transparent',
+
+                    '& .MuiSelect-select': {
+                      padding: 2,
+                      borderColor: 'white',
+                      backgroundColor: 'transparent',
+                      '& MuiMenu-paper': {
+                        backgroundColor: 'transparent',
+                      },
+                    },
+                  }}
+                >
+                  {category}
+                </MenuItem>
               ))}
-            </select>
+            </TextField>
           </div>
           <div>
-            <label>Sort By :</label>
-            <select
+            <TextField
               value={sortByOptions}
               onChange={(e) => setSortBy(e.target.value)}
+              label="By Time"
+              sx={{
+                backgroundColor: 'transparent',
+                minWidth: '10rem',
+                '& label.Mui-focused': {
+                  color: 'white',
+                },
+                '& .MuiInput-underline:after': {
+                  borderBottomColor: 'white',
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'white',
+                },
+                '& .MuiOutlinedInput-input': {
+                  color: 'white',
+                },
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'white',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: 'white',
+                  },
+                },
+                '& .MuiOutlinedInput-root:hover': {
+                  borderColor: 'white',
+                },
+              }}
+              select
             >
               {sortBy.map((option, index) => (
-                <option key={index}>{option}</option>
+                <MenuItem
+                  key={index}
+                  value={option}
+                  sx={{
+                    borderBottom: 'white',
+                  }}
+                >
+                  {option}
+                </MenuItem>
               ))}
-            </select>
+            </TextField>
           </div>
         </div>
       </div>
-      <div className="view-recipes">
-        {recipes &&
-          recipes.map((recipe, index) => (
-            <RecipeTemplate
-              recipe={recipe}
-              key={index}
-              handleDelete={handleDelete}
-            />
-          ))}
-      </div>
+      <Stack
+        sx={{
+          width: '80%',
+          height: '500px',
+          margin: '10rem auto',
+        }}
+      >
+        <Carousel slides={list} showNavigation={true} goToSlideDelay={100} />
+      </Stack>
     </div>
   )
 }

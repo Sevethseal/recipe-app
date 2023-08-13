@@ -13,7 +13,7 @@ export const useAuth = () => {
   return useContext(AuthContext)
 }
 
-export const AuthWrapper = ({ children }: AuthWrapperProps) => {
+export const AuthProvider = ({ children }: AuthWrapperProps) => {
   const [currentUser, setCurrentUser] = useState<null | boolean>(null)
   const [loading, setLoading] = useState<null | boolean>(true)
   const authenticatedLogin = async (email: string, password: string) => {

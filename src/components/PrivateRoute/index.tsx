@@ -1,10 +1,11 @@
 import React from 'react'
-import { Navigate } from 'react-router-dom'
-import { useAuth } from '../AuthWrapper'
-import { PrivateRouteProps } from './types'
-const PrivateRoute = ({ component: Component }: PrivateRouteProps) => {
-  const { currentUser } = useAuth()
-  return currentUser ? <Component /> : <Navigate to="/" />
-}
+import { Route, RouteProps, Routes } from 'react-router-dom'
 
+const PrivateRoute = (props: RouteProps) => {
+  return (
+    <Routes>
+      <Route {...props} />
+    </Routes>
+  )
+}
 export default PrivateRoute
