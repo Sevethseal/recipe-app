@@ -5,43 +5,55 @@ import React from 'react'
 import './styles.css'
 import { useNavigate } from 'react-router-dom'
 import { RecipeTemplateProps } from './types'
+import { Box, Stack, Typography } from '@mui/material'
+import recipeDefault from '../../assets/recipeDefault.jpg'
+import ModeEditIcon from '@mui/icons-material/ModeEdit'
+import DeleteIcon from '@mui/icons-material/Delete'
 
 const RecipeTemplate = ({ recipe, handleDelete }: RecipeTemplateProps) => {
   const history = useNavigate()
   return (
-    <div className="recipe-template" key={recipe.id}>
-      <div>
-        <label>Recipe for:</label>
-        <div>{recipe.name}</div>
-      </div>
-      <div>
-        <label>Category:</label>
-        <div>{recipe.category}</div>
-      </div>
-      <div>
-        <label>Ingredient:</label>
-        {recipe.ingredient.map((content, index) => (
-          <div key={index} className="ingredient">
-            {content}
-          </div>
-        ))}
-      </div>
-      <div>
-        <label>Instruction:</label>
-        <div className="instruction">{recipe.directions}</div>
-      </div>
-      <>
-        {recipe.imageUrl && (
+    <Box sx={{ maxWidth: '25rem', minWidth: '19rem' }}>
+      <Stack onClick={() => history(`/recipe?id=${recipe.id}`)}>
+        <img
+          src={recipe.imageUrl.length > 1 ? recipe.imageUrl : recipeDefault}
+          className="image"
+        />
+      </Stack>
+      <Stack className="recipe-template" key={recipe.id}>
+        <Stack className="recipe-template__details" rowGap={1}>
+          <Typography classes={{ root: 'recipe-template__heading' }}>
+            {recipe.name}
+          </Typography>
+          <Typography
+            classes={{ root: 'recipe-template__category' }}
+            sx={{
+              fontSize: '1rem',
+              color: '#909090',
+              fontWeight: 'bolder',
+            }}
+          >
+            {recipe.category}
+          </Typography>
+          {/* <div>
+          <label>Ingredient:</label>
+          {recipe.ingredient.map((content, index) => (
+            <div key={index} className="ingredient">
+              {content}
+            </div>
+          ))}
+        </div> */}
           <div>
-            <img src={recipe.imageUrl} className="image" />
+            <div className="instruction">{recipe.directions}</div>
           </div>
-        )}
-      </>
-      <div>
-        <button onClick={() => history(`/create?id=${recipe.id}`)}>Edit</button>
-        <button onClick={() => handleDelete(recipe.id)}>Delete</button>
-      </div>
-    </div>
+
+          <Box display={'flex'} justifyContent={'space-between'} width={'100%'}>
+            <ModeEditIcon onClick={() => history(`/create?id=${recipe.id}`)} />
+            <DeleteIcon onClick={() => handleDelete(recipe.id)} />
+          </Box>
+        </Stack>
+      </Stack>
+    </Box>
   )
 }
 

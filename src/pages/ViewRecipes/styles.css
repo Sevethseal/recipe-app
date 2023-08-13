@@ -1,12 +1,34 @@
-.view-recipes{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.view-recipes {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-image: url('../../assets/view.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: auto;
 }
-.sort{
-    display: flex;
-    justify-content: space-between;
+.sort {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1rem;
 }
-.sort>div{
-    padding: 4px;
+.sort > div {
+  padding: 4px;
+  backdrop-filter: blur(2px);
+}
+
+.view-recipes .css-1qzevvg {
+  width: 40%;
+  cursor: pointer;
+}
+.sort .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+  background-color: transparent !important;
+}
+.MuiPopover-root .MuiMenu-paper {
+  background-color: transparent !important;
+  color: antiquewhite;
+  backdrop-filter: blur(10px);
 }

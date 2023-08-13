@@ -18,7 +18,7 @@ export function* authenticatedLoginSaga(
       password
     )
     yield put(createLoginSuccess(result))
-    action.navigate('/home')
+    action.navigate('/about')
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     alert(error.message)
@@ -31,7 +31,7 @@ export function* authenticatedLoginGoogleSaga(
   try {
     const result: unknown = yield call(FireBaseAuthService.loginWithGoogle)
     yield put(createLoginSuccess(result))
-    action.navigate('/home')
+    action.navigate('/about')
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     alert(error.message)

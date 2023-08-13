@@ -1,4 +1,4 @@
-import { AnyAction } from '@reduxjs/toolkit'
+import { AnyAction } from 'redux'
 import { ListRecipeReducer } from './types'
 
 export const FETCH_RECIPE_LIST_ACTION = 'FETCH_RECIPE_LIST_ACTION'

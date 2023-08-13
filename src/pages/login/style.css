@@ -1,53 +1,98 @@
-.login{
-    background-color: #f0b846;
-    height: 100vh;
+/* login class css very important for div and background to occupy full space and be responsive */
+@import '@fontsource/prata/400.css';
+.login {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background-image: url('../../assets/loginCover.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: auto;
 }
-.login-section{
-    background-color: white;
-    padding: 1rem;
-    display: flex;
- justify-content: space-evenly; 
- margin: 0 3rem 0 3rem;
+.login__section {
+  display: flex;
+  align-items: flex-start;
+
+  border-radius: 25px;
+  min-height: 25rem;
+  min-width: 50rem;
 }
-.login__heading{
-  font-size: 2rem;
-  font-weight: bolder;
-  color: #444345;
-  padding: 5px;
+.login-section {
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 3rem 0 3rem;
+  overflow: hidden;
+}
+
+.login__heading-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.login__credential {
+  display: flex;
+  flex-direction: column;
+  padding: 2.45rem;
+  min-height: 50rem;
+  min-width: 35rem;
+  width: 100%;
+  border-radius: 25px 0 0 25px;
+  background-color: #f6f6f6;
+}
+.login__align {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+.login__align input {
+  border: 0;
+  background-color: #f0f1f4;
+  padding: 10px;
+  outline: 0;
+}
+.login__button-section {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 3rem;
+}
+
+.login__button {
+  color: black;
+  font-style: 'Prata';
+}
+
+.login__cover-image {
+  width: 44rem;
+  border-radius: 0 25px 25px 0;
+}
+
+.login__details {
+  display: flex;
+  flex-direction: column;
+  height: 75%;
+  gap: 10px;
+}
+.login__cover-image-wrapper {
   width: 100%;
 }
-.login__heading-wrapper{
-    width: 100%;
-    display: flex;
-    align-items: center;
+.login__sub-heading {
+  font-family: 'Prata' !important;
+  font-weight: bolder !important;
 }
-.login__credential{
-    display: flex;
-    flex-direction: column;
-    ;
-    width: 100%;
+.login__text {
+  font-family: 'Prata' !important;
+  font-size: 2.5rem !important;
 }
-.login__align{
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 10px;
-}
-.login__align input{
-    border: 0;
-    background-color: #f0f1f4;
-    padding: 10px;
-    outline: 0;
-}
-.login__button-section{
-    display: flex;
-    justify-content: space-between;
- 
-}
-.login__button-section button{
-padding: 3px;
-background-color: #0490e0;
-color: white;
-border: 0;
-width: 8rem;
-border-radius: 5px;
+.login__text-wrapper {
+  margin-top: 2rem;
+  margin-bottom: 5rem;
 }
