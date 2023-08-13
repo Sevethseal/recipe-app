@@ -107,7 +107,7 @@ const AddRecipes = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search])
   useEffect(() => {
-    if (uniqueRecipeResponse && isUpdate) {
+    if (uniqueRecipeResponse) {
       getUniqueRecipe()
       setIsUpdate(true)
     }
