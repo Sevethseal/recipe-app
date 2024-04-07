@@ -1,0 +1,584 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "d:\\Applications\\recipe-app",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2023-12-26 11:57:28",
+            "filesum": 82,
+            "codesum": 36858,
+            "commentsum": 89,
+            "blanksum": 176,
+            "statistics": {
+                ".json": {
+                    "code": 34523,
+                    "comment": 3,
+                    "blank": 9
+                },
+                ".txt": {
+                    "code": 3,
+                    "comment": 1,
+                    "blank": 0
+                },
+                ".tsx": {
+                    "code": 1215,
+                    "comment": 41,
+                    "blank": 67
+                },
+                ".html": {
+                    "code": 20,
+                    "comment": 23,
+                    "blank": 0
+                },
+                ".ts": {
+                    "code": 521,
+                    "comment": 8,
+                    "blank": 49
+                },
+                ".md": {
+                    "code": 21,
+                    "comment": 4,
+                    "blank": 15
+                },
+                ".js": {
+                    "code": 48,
+                    "comment": 4,
+                    "blank": 1
+                },
+                ".css": {
+                    "code": 367,
+                    "comment": 1,
+                    "blank": 19
+                },
+                ".jsx": {
+                    "code": 8,
+                    "comment": 0,
+                    "blank": 1
+                },
+                "": {
+                    "code": 35,
+                    "comment": 1,
+                    "blank": 6
+                },
+                ".cache": {
+                    "code": 14,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".yml": {
+                    "code": 55,
+                    "comment": 2,
+                    "blank": 2
+                },
+                ".sh": {
+                    "code": 28,
+                    "comment": 1,
+                    "blank": 7
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": ".env"
+                },
+                {
+                    "blank": 0,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": ".eslintrc.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": ".firebase\\hosting.YnVpbGQ.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": ".firebaserc"
+                },
+                {
+                    "blank": 1,
+                    "code": 29,
+                    "comment": 1,
+                    "filename": ".github\\workflows\\firebase-hosting-merge.yml"
+                },
+                {
+                    "blank": 1,
+                    "code": 26,
+                    "comment": 1,
+                    "filename": ".github\\workflows\\firebase-hosting-pull-request.yml"
+                },
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".husky\\_\\.gitignore"
+                },
+                {
+                    "blank": 7,
+                    "code": 28,
+                    "comment": 1,
+                    "filename": ".husky\\_\\husky.sh"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": ".husky\\pre-commit"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": ".prettierrc.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 1,
+                    "filename": "database.rules.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "firebase.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 34363,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 5,
+                    "code": 92,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "filename": "public\\favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 20,
+                    "comment": 23,
+                    "filename": "public\\index.html"
+                },
+                {
+                    "filename": "public\\logo192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "public\\logo512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "public\\manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "public\\robots.txt"
+                },
+                {
+                    "blank": 15,
+                    "code": 21,
+                    "comment": 4,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\App.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\App.test.jsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src\\App.tsx"
+                },
+                {
+                    "filename": "src\\assets\\addRecipeCover.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\loginCover.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\recipeDefault.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\view.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\viewRecipe.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 4,
+                    "code": 56,
+                    "comment": 3,
+                    "filename": "src\\components\\AuthWrapper\\index.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src\\components\\AuthWrapper\\types.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 81,
+                    "comment": 1,
+                    "filename": "src\\components\\FileUploadComponent\\index.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\components\\FileUploadComponent\\styles.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\components\\FileUploadComponent\\types.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src\\components\\Layout.tsx\\index.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src\\components\\Layout.tsx\\styles.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\components\\Layout.tsx\\types.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 60,
+                    "comment": 3,
+                    "filename": "src\\components\\NavBar\\index.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src\\components\\NavBar\\styles.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\components\\PrivateRoute\\index.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\components\\PrivateRoute\\types.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 47,
+                    "comment": 10,
+                    "filename": "src\\components\\RecipeTemplate\\index.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 55,
+                    "comment": 0,
+                    "filename": "src\\components\\RecipeTemplate\\styles.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\components\\RecipeTemplate\\types.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\components\\Redirect.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 40,
+                    "comment": 0,
+                    "filename": "src\\FireBaseAuthService.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\FirebaseConfig.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 50,
+                    "comment": 2,
+                    "filename": "src\\FireBaseFirestoreService.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "src\\firebaseStorageService.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\globaltypes.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\index.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 31,
+                    "comment": 3,
+                    "filename": "src\\index.tsx"
+                },
+                {
+                    "blank": 14,
+                    "code": 368,
+                    "comment": 6,
+                    "filename": "src\\pages\\addRecipes\\index.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "src\\pages\\addRecipes\\styles.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src\\pages\\addRecipes\\types.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\pages\\Home\\index.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 122,
+                    "comment": 4,
+                    "filename": "src\\pages\\login\\index.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 92,
+                    "comment": 1,
+                    "filename": "src\\pages\\login\\style.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 86,
+                    "comment": 2,
+                    "filename": "src\\pages\\ViewRecipe\\index.tsx"
+                },
+                {
+                    "blank": 8,
+                    "code": 82,
+                    "comment": 0,
+                    "filename": "src\\pages\\ViewRecipe\\styles.css"
+                },
+                {
+                    "blank": 9,
+                    "code": 216,
+                    "comment": 5,
+                    "filename": "src\\pages\\ViewRecipes\\index.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "src\\pages\\ViewRecipes\\styles.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src\\pages\\ViewRecipes\\view.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\reportWebVitals.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src\\routes\\index.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src\\routes\\routeToComponentMap.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 1,
+                    "filename": "src\\sagas\\reducer\\index.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 52,
+                    "comment": 0,
+                    "filename": "src\\sagas\\reducer\\login.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 52,
+                    "comment": 0,
+                    "filename": "src\\sagas\\reducer\\recipe.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "src\\sagas\\reducer\\recipeList.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src\\sagas\\reducer\\types.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "src\\sagas\\saga\\index.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 43,
+                    "comment": 3,
+                    "filename": "src\\sagas\\saga\\login.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src\\sagas\\saga\\recipe.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src\\sagas\\saga\\recipeList.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 4,
+                    "filename": "src\\setupTests.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 13,
+                    "comment": 2,
+                    "filename": "src\\store\\index.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src\\typings\\images.d.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 18,
+                    "comment": 2,
+                    "filename": "src\\utils\\asyncComponent.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 31,
+                    "comment": 2,
+                    "filename": "src\\utils\\useForm\\index.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 19,
+                    "comment": 2,
+                    "filename": "tsconfig.json"
+                }
+            ]
+        }
+    ]
+}

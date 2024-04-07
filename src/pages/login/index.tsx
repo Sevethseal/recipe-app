@@ -5,7 +5,7 @@ import FireBaseAuthService from '../../FireBaseAuthService'
 import { useAuth } from '../../components/AuthWrapper'
 import { useNavigate } from 'react-router-dom'
 import { Box, TextField, Button, Typography } from '@mui/material'
-import loginCover from '../../assets/loginCover.jpg'
+import loginCover from '../../assets/loginCover.webp'
 import './style.css'
 
 const Login = () => {
