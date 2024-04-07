@@ -1,0 +1,111 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2023-12-26 11:57:28
+count workspace : d:\Applications\recipe-app
+total files : 82
+total code lines : 36858
+total comment lines : 89
+total blank lines : 176
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |          .json|          34523|              3|              9|     94|
+   |           .txt|              3|              1|              0| 0.0081|
+   |           .tsx|           1215|             41|             67|    3.3|
+   |          .html|             20|             23|              0|  0.054|
+   |            .ts|            521|              8|             49|    1.4|
+   |            .md|             21|              4|             15|  0.057|
+   |            .js|             48|              4|              1|   0.13|
+   |           .css|            367|              1|             19|    1.0|
+   |           .jsx|              8|              0|              1|  0.022|
+   |               |             35|              1|              6|  0.095|
+   |         .cache|             14|              0|              0|  0.038|
+   |           .yml|             55|              2|              2|   0.15|
+   |            .sh|             28|              1|              7|  0.076|
+   -------------------------------------------------------------------------
+.env, code is 8, comment is 0, blank is 0.
+.eslintrc.js, code is 27, comment is 0, blank is 0.
+.firebase\hosting.YnVpbGQ.cache, code is 14, comment is 0, blank is 0.
+.firebaserc, code is 5, comment is 0, blank is 0.
+.github\workflows\firebase-hosting-merge.yml, code is 29, comment is 1, blank is 1.
+.github\workflows\firebase-hosting-pull-request.yml, code is 26, comment is 1, blank is 1.
+.gitignore, code is 18, comment is 1, blank is 5.
+.husky\_\.gitignore, code is 1, comment is 0, blank is 0.
+.husky\_\husky.sh, code is 28, comment is 1, blank is 7.
+.husky\pre-commit, code is 3, comment is 0, blank is 1.
+.prettierrc.js, code is 8, comment is 0, blank is 0.
+database.rules.json, code is 6, comment is 1, blank is 0.
+firebase.json, code is 18, comment is 0, blank is 1.
+package-lock.json, code is 34363, comment is 0, blank is 2.
+package.json, code is 92, comment is 0, blank is 5.
+public\favicon.ico, it is a binary file.
+public\index.html, code is 20, comment is 23, blank is 0.
+public\logo192.png, it is a binary file.
+public\logo512.png, it is a binary file.
+public\manifest.json, code is 25, comment is 0, blank is 0.
+public\robots.txt, code is 3, comment is 1, blank is 0.
+README.md, code is 21, comment is 4, blank is 15.
+src\App.css, code is 8, comment is 0, blank is 0.
+src\App.test.jsx, code is 8, comment is 0, blank is 1.
+src\App.tsx, code is 7, comment is 0, blank is 2.
+src\assets\addRecipeCover.jpg, it is a binary file.
+src\assets\loginCover.jpg, it is a binary file.
+src\assets\recipeDefault.jpg, it is a binary file.
+src\assets\view.jpg, it is a binary file.
+src\assets\viewRecipe.jpg, it is a binary file.
+src\components\AuthWrapper\index.tsx, code is 56, comment is 3, blank is 4.
+src\components\AuthWrapper\types.ts, code is 4, comment is 0, blank is 1.
+src\components\FileUploadComponent\index.tsx, code is 81, comment is 1, blank is 2.
+src\components\FileUploadComponent\styles.css, code is 3, comment is 0, blank is 0.
+src\components\FileUploadComponent\types.ts, code is 6, comment is 0, blank is 0.
+src\components\Layout.tsx\index.tsx, code is 19, comment is 0, blank is 3.
+src\components\Layout.tsx\styles.css, code is 7, comment is 0, blank is 0.
+src\components\Layout.tsx\types.ts, code is 3, comment is 0, blank is 0.
+src\components\NavBar\index.tsx, code is 60, comment is 3, blank is 2.
+src\components\NavBar\styles.css, code is 34, comment is 0, blank is 2.
+src\components\PrivateRoute\index.tsx, code is 10, comment is 0, blank is 1.
+src\components\PrivateRoute\types.ts, code is 0, comment is 0, blank is 0.
+src\components\RecipeTemplate\index.tsx, code is 47, comment is 10, blank is 4.
+src\components\RecipeTemplate\styles.css, code is 55, comment is 0, blank is 2.
+src\components\RecipeTemplate\types.ts, code is 12, comment is 0, blank is 1.
+src\components\Redirect.tsx, code is 8, comment is 0, blank is 2.
+src\FireBaseAuthService.ts, code is 40, comment is 0, blank is 5.
+src\FirebaseConfig.ts, code is 15, comment is 0, blank is 3.
+src\FireBaseFirestoreService.ts, code is 50, comment is 2, blank is 4.
+src\firebaseStorageService.ts, code is 37, comment is 0, blank is 4.
+src\globaltypes.ts, code is 3, comment is 0, blank is 0.
+src\index.css, code is 12, comment is 0, blank is 1.
+src\index.tsx, code is 31, comment is 3, blank is 1.
+src\pages\addRecipes\index.tsx, code is 368, comment is 6, blank is 14.
+src\pages\addRecipes\styles.css, code is 41, comment is 0, blank is 0.
+src\pages\addRecipes\types.ts, code is 9, comment is 0, blank is 1.
+src\pages\Home\index.tsx, code is 5, comment is 0, blank is 1.
+src\pages\login\index.tsx, code is 122, comment is 4, blank is 3.
+src\pages\login\style.css, code is 92, comment is 1, blank is 5.
+src\pages\ViewRecipe\index.tsx, code is 86, comment is 2, blank is 6.
+src\pages\ViewRecipe\styles.css, code is 82, comment is 0, blank is 8.
+src\pages\ViewRecipes\index.tsx, code is 216, comment is 5, blank is 9.
+src\pages\ViewRecipes\styles.css, code is 33, comment is 0, blank is 1.
+src\pages\ViewRecipes\view.ts, code is 9, comment is 0, blank is 0.
+src\reportWebVitals.js, code is 12, comment is 0, blank is 1.
+src\routes\index.tsx, code is 25, comment is 0, blank is 5.
+src\routes\routeToComponentMap.tsx, code is 25, comment is 0, blank is 2.
+src\sagas\reducer\index.ts, code is 8, comment is 1, blank is 0.
+src\sagas\reducer\login.ts, code is 52, comment is 0, blank is 5.
+src\sagas\reducer\recipe.ts, code is 52, comment is 0, blank is 6.
+src\sagas\reducer\recipeList.ts, code is 41, comment is 0, blank is 7.
+src\sagas\reducer\types.ts, code is 14, comment is 0, blank is 3.
+src\sagas\saga\index.ts, code is 36, comment is 0, blank is 2.
+src\sagas\saga\login.ts, code is 43, comment is 3, blank is 3.
+src\sagas\saga\recipe.ts, code is 51, comment is 0, blank is 3.
+src\sagas\saga\recipeList.ts, code is 19, comment is 0, blank is 0.
+src\setupTests.js, code is 1, comment is 4, blank is 0.
+src\store\index.ts, code is 13, comment is 2, blank is 1.
+src\typings\images.d.ts, code is 4, comment is 0, blank is 0.
+src\utils\asyncComponent.tsx, code is 18, comment is 2, blank is 3.
+src\utils\useForm\index.tsx, code is 31, comment is 2, blank is 3.
+tsconfig.json, code is 19, comment is 2, blank is 1.
+===============================================================================

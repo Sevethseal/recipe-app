@@ -6,7 +6,7 @@ import './styles.css'
 import { useNavigate } from 'react-router-dom'
 import { RecipeTemplateProps } from './types'
 import { Box, Stack, Typography } from '@mui/material'
-import recipeDefault from '../../assets/recipeDefault.jpg'
+import recipeDefault from '../../assets/recipeDefault.webp'
 import ModeEditIcon from '@mui/icons-material/ModeEdit'
 import DeleteIcon from '@mui/icons-material/Delete'
 
