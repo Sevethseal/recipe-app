@@ -7,7 +7,7 @@ import ViewRecipe from '../pages/ViewRecipe'
 
 const routeToComponentMap: RouteProps[] = [
   {
-    path: '/about',
+    path: '/home',
     element: <Home />,
   },
   {

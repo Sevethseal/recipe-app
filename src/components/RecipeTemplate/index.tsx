@@ -1,7 +1,7 @@
 /* eslint-disable eslint-comments/disable-enable-pair */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/alt-text */
-import React from 'react'
+import React, { useState } from 'react'
 import './styles.css'
 import { useNavigate } from 'react-router-dom'
 import { RecipeTemplateProps } from './types'
@@ -9,9 +9,19 @@ import { Box, Stack, Typography } from '@mui/material'
 import recipeDefault from '../../assets/recipeDefault.webp'
 import ModeEditIcon from '@mui/icons-material/ModeEdit'
 import DeleteIcon from '@mui/icons-material/Delete'
+import ConfirmationModal from '../ConfirmationModal'
 
 const RecipeTemplate = ({ recipe, handleDelete }: RecipeTemplateProps) => {
   const history = useNavigate()
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
+  const handleDeleteModal = () => {
+    setDeleteModalOpen((state) => !state)
+  }
+  const DeleteModalOkAction = () => {
+    handleDelete(recipe.id)
+    handleDeleteModal()
+  }
+
   return (
     <Box sx={{ maxWidth: '25rem', minWidth: '19rem' }}>
       <Stack onClick={() => history(`/recipe?id=${recipe.id}`)}>
@@ -49,10 +59,18 @@ const RecipeTemplate = ({ recipe, handleDelete }: RecipeTemplateProps) => {
 
           <Box display={'flex'} justifyContent={'space-between'} width={'100%'}>
             <ModeEditIcon onClick={() => history(`/create?id=${recipe.id}`)} />
-            <DeleteIcon onClick={() => handleDelete(recipe.id)} />
+            <DeleteIcon onClick={handleDeleteModal} />
           </Box>
         </Stack>
       </Stack>
+      <ConfirmationModal
+        title="Delete Confirmation"
+        content="Are you sure you want to delete the recipe"
+        onClose={handleDeleteModal}
+        onConfirm={DeleteModalOkAction}
+        open={isDeleteModalOpen}
+        key={'DeleteModal'}
+      />
     </Box>
   )
 }

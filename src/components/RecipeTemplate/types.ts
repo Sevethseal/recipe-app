@@ -9,5 +9,5 @@ export interface Recipe {
 
 export interface RecipeTemplateProps {
   recipe: Recipe
-  handleDelete: (is: string) => void
+  handleDelete: (id: string) => void
 }

@@ -32,3 +32,13 @@
   color: antiquewhite;
   backdrop-filter: blur(10px);
 }
+
+.loading-icon {
+  display: flex;
+  align-items: center;
+}
+.no-data {
+  color: white;
+  font-size: 5rem;
+  align-items: center;
+}

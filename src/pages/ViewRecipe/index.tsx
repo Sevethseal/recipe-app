@@ -16,6 +16,7 @@ const ViewRecipe = () => {
   const uniqueRecipeResponse = useSelector(
     (state: ReduxState) => state.uniqueRecipe.recipe
   )
+
   const {
     category = '',
     directions = '',
@@ -65,6 +66,7 @@ const ViewRecipe = () => {
           <Typography className="view-recipe__sub-heading">
             {category}
           </Typography>
+
           <Box className="view-recipe__details-section">
             <Stack component={'div'}>
               <IngredientTable ingredients={ingredientList} />

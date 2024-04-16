@@ -1,5 +1,6 @@
 export interface InitialLoginState {
   currentUser: null | unknown
+  isLoading: boolean
 }
 
 export interface InitialRecipeState {

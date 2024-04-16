@@ -1,10 +1,12 @@
 import { call, put } from 'redux-saga/effects'
 import firebaseFirestoreService from '../../FireBaseFirestoreService'
 import { fetchRecipeList, fetchRecipeListSuccess } from '../reducer/recipeList'
+import { setLoadingFalse, setLoadingTrue } from '../reducer/login'
 export function* fetchRecipeListSaga(
   action: ReturnType<typeof fetchRecipeList>
 ) {
   try {
+    yield put(setLoadingTrue())
     const result: unknown = yield call(
       firebaseFirestoreService.readDocument,
       'recipes',
@@ -13,7 +15,9 @@ export function* fetchRecipeListSaga(
       action.order
     )
     yield put(fetchRecipeListSuccess(result))
+    yield put(setLoadingFalse())
   } catch (error) {
     alert(error)
+    yield put(setLoadingFalse())
   }
 }
