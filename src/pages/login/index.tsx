@@ -14,18 +14,19 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const history = useNavigate()
   const { authenticatedLogin, authenticatedLoginGoogle } = useAuth()
+
   const LoginUser = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
     if (email && password) {
       await authenticatedLogin(email, password)
-      history('/about')
+      history('/home')
     } else {
       alert('fill email and password')
     }
   }
   const LoginGoogle = async () => {
     await authenticatedLoginGoogle()
-    history('/about')
+    history('/home')
   }
   const handleResetPassword = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()

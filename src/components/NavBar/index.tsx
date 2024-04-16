@@ -15,8 +15,8 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const navRedirect = (page: string) => {
     switch (page) {
-      case 'ABOUT':
-        history('/about')
+      case 'HOME':
+        history('/home')
         break
       case 'RECIPES':
         history('/view')
@@ -25,7 +25,7 @@ const NavBar = () => {
         history('/create')
         break
       default:
-        history('/about')
+        history('/home')
     }
   }
   const menuClickHandler = () => {
@@ -33,9 +33,9 @@ const NavBar = () => {
   }
   const MenuList = (
     <div className="menu-item">
-      <div onClick={() => navRedirect('ABOUT')}>ABOUT</div>
-      <div onClick={() => navRedirect('RECIPES')}>RECIPES</div>
-      <div onClick={() => navRedirect('ADD RECIPES')}>ADD RECIPES</div>
+      <div onClick={() => navRedirect('HOME')}>Home</div>
+      <div onClick={() => navRedirect('RECIPES')}>Recipes</div>
+      <div onClick={() => navRedirect('ADD RECIPES')}>Add Recipes</div>
     </div>
   )
 

@@ -7,15 +7,19 @@ import {
   fetchRecipeSuccess,
   updateRecipe,
 } from '../reducer/recipe'
+import { setLoadingFalse, setLoadingTrue } from '../reducer/login'
 export function* fetchRecipeSaga(action: ReturnType<typeof fetchRecipe>) {
   try {
+    yield put(setLoadingTrue())
     const result: unknown = yield call(
       firebaseFirestoreService.readUniqueDocument,
       'recipes',
       action.id
     )
     yield put(fetchRecipeSuccess(result))
+    yield put(setLoadingFalse())
   } catch (error) {
+    yield put(setLoadingFalse())
     alert(error)
   }
 }

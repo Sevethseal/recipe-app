@@ -14,7 +14,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { AddRecipeFormModel } from './types'
 import { ReduxState } from '../../sagas/reducer/types'
-import { Box, Button, Stack, TextField } from '@mui/material'
+import { Box, Button, CircularProgress, Stack, TextField } from '@mui/material'
 import { TextareaAutosize } from '@mui/base'
 import { DatePicker } from '@mui/x-date-pickers'
 import styled from '@mui/styles/styled/styled'
@@ -75,6 +75,7 @@ const AddRecipes = () => {
   const uniqueRecipeResponse = useSelector(
     (state: ReduxState) => state.uniqueRecipe.recipe
   )
+  const isLoading = useSelector((state: ReduxState) => state.login.isLoading)
   const id = search.slice(4)
   const getUniqueRecipe = () => {
     if (uniqueRecipeResponse) {
@@ -202,140 +203,170 @@ const AddRecipes = () => {
 
   return (
     <div className="recipe-container">
-      <Box className="recipe-box">
-        <div className="recipe-head">Create Recipe</div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack rowGap={2}>
-            <Box display={'flex'} columnGap={2}>
-              <Controller
-                name="name"
-                control={control}
-                render={({ field }) => (
-                  <WhiteTextField
-                    id="name"
-                    label="Recipe Name"
-                    variant="outlined"
-                    required
-                    autoComplete="off"
-                    {...field}
-                  />
-                )}
-              />
-              <Controller
-                name="category"
-                control={control}
-                render={({ field }) => (
-                  <WhiteTextField
-                    id="Category"
-                    label="Category"
-                    variant="outlined"
-                    required
-                    autoComplete="off"
-                    {...field}
-                  />
-                )}
-              />
-            </Box>
-            <Controller
-              name="directions"
-              control={control}
-              render={({ field }) => (
-                <TextareaAutosize
-                  id="directions"
-                  placeholder="Directions"
-                  minRows={9}
-                  required
-                  style={{
-                    color: 'white',
-                    background: 'transparent',
-                    border: '2px solid white',
-                    borderRadius: '5px',
-                    width: 'auto',
-                  }}
-                  {...field}
-                />
-              )}
-            />
-            <Controller
-              name="publishDate"
-              control={control}
-              render={({ field }) => (
-                <DatePicker
-                  label="Publish Date"
-                  sx={{
-                    ':placeholder': {
-                      color: 'white',
-                    },
-                    svg: {
-                      color: 'white',
-                    },
-                    '&.MuiPickersPopper-root': {
-                      color: 'white',
-                    },
-                    '& label.Mui-focused': {
-                      color: 'white',
-                    },
-                    '& .MuiInput-underline:after': {
-                      borderBottomColor: 'white',
-                    },
-                    '& .MuiInputLabel-root': {
-                      color: 'white',
-                    },
-                    '& .MuiOutlinedInput-input': {
-                      color: 'white',
-                    },
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': {
-                        borderColor: 'white',
-                      },
-                      '&:hover fieldset': {
-                        borderColor: 'white',
-                      },
-                      '&.Mui-focused fieldset': {
-                        borderColor: 'white',
-                      },
-                    },
-                    '& .MuiOutlinedInput-root:hover': {
-                      borderColor: 'white',
-                    },
-                  }}
-                  {...field}
-                />
-              )}
-            />
-            <Controller
-              name="ingredient"
-              control={control}
-              render={({ field }) => (
-                <WhiteTextField
-                  id="ingredient"
-                  label="Ingredient"
-                  variant="outlined"
-                  {...field}
-                />
-              )}
-            />
-
-            <Button
-              variant="outlined"
-              onClick={addIngredients}
-              style={{
-                border: '1px solid white',
-                color: 'white',
-                font: 'Prata',
-              }}
-            >
-              ADD
-            </Button>
-            <div>{<IngredientTable />}</div>
-            <FileUploadComponent
-              basePath={'recipes'}
-              existingUrl={imageUrl as string}
-              handleUploadFinish={(newUrl) => setImageUrl(newUrl)}
-              handleUploadCancel={() => setImageUrl('')}
-            />
-            {search ? (
+      {isLoading ? (
+        <CircularProgress color="secondary" size={'7rem'} />
+      ) : (
+        <Box className="recipe-box">
+          <div className="recipe-head">Create Recipe</div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Stack rowGap={2}>
               <Box display={'flex'} columnGap={2}>
+                <Controller
+                  name="name"
+                  control={control}
+                  render={({ field }) => (
+                    <WhiteTextField
+                      id="name"
+                      label="Recipe Name"
+                      variant="outlined"
+                      required
+                      autoComplete="off"
+                      {...field}
+                    />
+                  )}
+                />
+                <Controller
+                  name="category"
+                  control={control}
+                  render={({ field }) => (
+                    <WhiteTextField
+                      id="Category"
+                      label="Category"
+                      variant="outlined"
+                      required
+                      autoComplete="off"
+                      {...field}
+                    />
+                  )}
+                />
+              </Box>
+              <Controller
+                name="directions"
+                control={control}
+                render={({ field }) => (
+                  <TextareaAutosize
+                    id="directions"
+                    placeholder="Directions"
+                    minRows={9}
+                    required
+                    style={{
+                      color: 'white',
+                      background: 'transparent',
+                      border: '2px solid white',
+                      borderRadius: '5px',
+                      width: 'auto',
+                    }}
+                    {...field}
+                  />
+                )}
+              />
+              <Controller
+                name="publishDate"
+                control={control}
+                render={({ field }) => (
+                  <DatePicker
+                    label="Publish Date"
+                    sx={{
+                      ':placeholder': {
+                        color: 'white',
+                      },
+                      svg: {
+                        color: 'white',
+                      },
+                      '&.MuiPickersPopper-root': {
+                        color: 'white',
+                      },
+                      '& label.Mui-focused': {
+                        color: 'white',
+                      },
+                      '& .MuiInput-underline:after': {
+                        borderBottomColor: 'white',
+                      },
+                      '& .MuiInputLabel-root': {
+                        color: 'white',
+                      },
+                      '& .MuiOutlinedInput-input': {
+                        color: 'white',
+                      },
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                          borderColor: 'white',
+                        },
+                        '&:hover fieldset': {
+                          borderColor: 'white',
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: 'white',
+                        },
+                      },
+                      '& .MuiOutlinedInput-root:hover': {
+                        borderColor: 'white',
+                      },
+                    }}
+                    {...field}
+                  />
+                )}
+              />
+              <Controller
+                name="ingredient"
+                control={control}
+                render={({ field }) => (
+                  <WhiteTextField
+                    id="ingredient"
+                    label="Ingredient"
+                    variant="outlined"
+                    {...field}
+                  />
+                )}
+              />
+
+              <Button
+                variant="outlined"
+                onClick={addIngredients}
+                style={{
+                  border: '1px solid white',
+                  color: 'white',
+                  font: 'Prata',
+                }}
+              >
+                ADD
+              </Button>
+              <div>{<IngredientTable />}</div>
+              <FileUploadComponent
+                basePath={'recipes'}
+                existingUrl={imageUrl as string}
+                handleUploadFinish={(newUrl) => setImageUrl(newUrl)}
+                handleUploadCancel={() => setImageUrl('')}
+              />
+              {search ? (
+                <Box display={'flex'} columnGap={2}>
+                  <Button
+                    type="submit"
+                    variant="outlined"
+                    style={{
+                      border: '1px solid white',
+                      color: 'white',
+                      font: 'Prata',
+                      width: '100%',
+                    }}
+                  >
+                    Update
+                  </Button>
+                  <Button
+                    type="button"
+                    onClick={handleCancel}
+                    variant="outlined"
+                    style={{
+                      border: '1px solid white',
+                      color: 'white',
+                      font: 'Prata',
+                      width: '100%',
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </Box>
+              ) : (
                 <Button
                   type="submit"
                   variant="outlined"
@@ -346,41 +377,15 @@ const AddRecipes = () => {
                     width: '100%',
                   }}
                 >
-                  Update
+                  Submit
                 </Button>
-                <Button
-                  type="button"
-                  onClick={handleCancel}
-                  variant="outlined"
-                  style={{
-                    border: '1px solid white',
-                    color: 'white',
-                    font: 'Prata',
-                    width: '100%',
-                  }}
-                >
-                  Cancel
-                </Button>
-              </Box>
-            ) : (
-              <Button
-                type="submit"
-                variant="outlined"
-                style={{
-                  border: '1px solid white',
-                  color: 'white',
-                  font: 'Prata',
-                  width: '100%',
-                }}
-              >
-                Submit
-              </Button>
-            )}
-          </Stack>
+              )}
+            </Stack>
 
-          {loading && <div style={{ color: 'red' }}>Updating</div>}
-        </form>
-      </Box>
+            {loading && <div style={{ color: 'red' }}>Updating</div>}
+          </form>
+        </Box>
+      )}
     </div>
   )
 }

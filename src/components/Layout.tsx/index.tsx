@@ -7,6 +7,7 @@ import { useAuth } from '../AuthWrapper'
 
 const Layout = () => {
   const { currentUser } = useAuth()
+
   return currentUser ? (
     <>
       <NavBar />

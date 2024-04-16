@@ -9,17 +9,25 @@ import { AllCategory, sortBy } from './view'
 import './styles.css'
 import { ReduxState } from '../../sagas/reducer/types'
 import Carousel from 'react-spring-3d-carousel'
-import { MenuItem, TextField, Stack } from '@mui/material'
+import {
+  MenuItem,
+  TextField,
+  Stack,
+  CircularProgress,
+  Typography,
+} from '@mui/material'
 
 const ViewRecipes = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [recipes, setRecipes] = useState<any[]>([])
   const [byCategory, setByCategory] = useState('All')
   const [sortByOptions, setSortBy] = useState('Default')
+
   const dispatch = useDispatch()
   const recipeListResponse = useSelector(
     (state: ReduxState) => state.recipeList.recipeListResponse
   )
+  const isLoading = useSelector((state: ReduxState) => state.login.isLoading)
 
   const getAllRecipeQueries = () => {
     let sortOption = ''
@@ -214,6 +222,7 @@ const ViewRecipes = () => {
           </div>
         </div>
       </div>
+
       <Stack
         sx={{
           width: '80%',
@@ -221,7 +230,19 @@ const ViewRecipes = () => {
           margin: '10rem auto',
         }}
       >
-        <Carousel slides={list} showNavigation={true} goToSlideDelay={100} />
+        {isLoading ? (
+          <Stack className="loading-icon">
+            <CircularProgress color="secondary" size={'7rem'} />
+          </Stack>
+        ) : list.length > 0 ? (
+          <Carousel slides={list} showNavigation={true} goToSlideDelay={100} />
+        ) : (
+          <Typography
+            sx={{ color: 'white', fontSize: '3rem', textAlign: 'center' }}
+          >
+            Oops no recipe..!
+          </Typography>
+        )}
       </Stack>
     </div>
   )
