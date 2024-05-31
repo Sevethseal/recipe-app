@@ -33,9 +33,24 @@ const NavBar = () => {
   }
   const MenuList = (
     <div className="menu-item">
-      <div onClick={() => navRedirect('HOME')}>Home</div>
-      <div onClick={() => navRedirect('RECIPES')}>Recipes</div>
-      <div onClick={() => navRedirect('ADD RECIPES')}>Add Recipes</div>
+      <div
+        className={location.pathname === '/home' ? 'active-nav-bar' : ''}
+        onClick={() => navRedirect('HOME')}
+      >
+        Home
+      </div>
+      <div
+        className={location.pathname === '/view' ? 'active-nav-bar' : ''}
+        onClick={() => navRedirect('RECIPES')}
+      >
+        Recipes
+      </div>
+      <div
+        className={location.pathname === '/create' ? 'active-nav-bar' : ''}
+        onClick={() => navRedirect('ADD RECIPES')}
+      >
+        Add Recipes
+      </div>
     </div>
   )
 
@@ -44,9 +59,9 @@ const NavBar = () => {
     <div className="nav-bar">
       <Stack display={'flex'} justifyContent={'center'}>
         {isMenuOpen ? (
-          <CloseRoundedIcon onClick={menuClickHandler} />
+          <CloseRoundedIcon onClick={menuClickHandler} id="menuClose" />
         ) : (
-          <MenuSharpIcon onClick={menuClickHandler} />
+          <MenuSharpIcon onClick={menuClickHandler} id="menuIcon" />
         )}
       </Stack>
       {isMenuOpen && MenuList}

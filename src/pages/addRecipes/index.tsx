@@ -20,6 +20,7 @@ import { DatePicker } from '@mui/x-date-pickers'
 import styled from '@mui/styles/styled/styled'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import dayjs from 'dayjs'
+import ConfirmationModal from '../../components/ConfirmationModal'
 
 const defaultValue: AddRecipeFormModel = {
   name: '',
@@ -61,22 +62,31 @@ const WhiteTextField = styled(TextField)({
 })
 
 const AddRecipes = () => {
-  const { control, handleSubmit, setValue, getValues, watch, reset } =
-    useForm<AddRecipeFormModel>({
-      defaultValues: defaultValue,
-    })
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    getValues,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<AddRecipeFormModel>({
+    defaultValues: defaultValue,
+  })
   const [ingredientList] = watch(['ingredientList'])
   const { search } = useLocation()
   const history = useNavigate()
   const [loading, setLoading] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
   const [imageUrl, setImageUrl] = useState<string | undefined>('')
+  const [isErrorModalOpen, setIsErrorsModalOpen] = useState(false)
   const dispatch = useDispatch()
   const uniqueRecipeResponse = useSelector(
     (state: ReduxState) => state.uniqueRecipe.recipe
   )
   const isLoading = useSelector((state: ReduxState) => state.login.isLoading)
   const id = search.slice(4)
+
   const getUniqueRecipe = () => {
     if (uniqueRecipeResponse) {
       const { category, directions, ingredient, name, publishDate, imageUrl } =
@@ -93,6 +103,9 @@ const AddRecipes = () => {
       setImageUrl(imageUrl)
       reset(preFillFormData)
     }
+  }
+  const errorModalCloseAction = () => {
+    setIsErrorsModalOpen(false)
   }
 
   useEffect(() => {
@@ -114,6 +127,12 @@ const AddRecipes = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, uniqueRecipeResponse])
+
+  useEffect(() => {
+    if (Object.keys(errors).length) {
+      setIsErrorsModalOpen(true)
+    }
+  }, [errors])
 
   const addIngredients = () => {
     const [ingredientList, ingredient] = getValues([
@@ -214,13 +233,14 @@ const AddRecipes = () => {
                 <Controller
                   name="name"
                   control={control}
+                  rules={{ required: 'Recipe name is required !' }}
                   render={({ field }) => (
                     <WhiteTextField
                       id="name"
                       label="Recipe Name"
                       variant="outlined"
-                      required
                       autoComplete="off"
+                      error={Boolean(errors.name?.message)}
                       {...field}
                     />
                   )}
@@ -228,13 +248,14 @@ const AddRecipes = () => {
                 <Controller
                   name="category"
                   control={control}
+                  rules={{ required: 'Category name is required !' }}
                   render={({ field }) => (
                     <WhiteTextField
                       id="Category"
                       label="Category"
                       variant="outlined"
-                      required
                       autoComplete="off"
+                      error={Boolean(errors.category?.message)}
                       {...field}
                     />
                   )}
@@ -243,12 +264,12 @@ const AddRecipes = () => {
               <Controller
                 name="directions"
                 control={control}
+                rules={{ required: 'Directions are required !' }}
                 render={({ field }) => (
                   <TextareaAutosize
                     id="directions"
                     placeholder="Directions"
                     minRows={9}
-                    required
                     style={{
                       color: 'white',
                       background: 'transparent',
@@ -310,11 +331,13 @@ const AddRecipes = () => {
               <Controller
                 name="ingredient"
                 control={control}
+                rules={{ required: 'Ingredients are required !' }}
                 render={({ field }) => (
                   <WhiteTextField
                     id="ingredient"
                     label="Ingredient"
                     variant="outlined"
+                    error={Boolean(errors.ingredient?.message)}
                     {...field}
                   />
                 )}
@@ -383,6 +406,16 @@ const AddRecipes = () => {
             </Stack>
 
             {loading && <div style={{ color: 'red' }}>Updating</div>}
+            {
+              <ConfirmationModal
+                title="OOPS errors"
+                content="Are you sure you want to delete the recipe"
+                onClose={errorModalCloseAction}
+                open={isErrorModalOpen}
+                key={'DeleteModal'}
+                showOkButtonOnly={true}
+              />
+            }
           </form>
         </Box>
       )}

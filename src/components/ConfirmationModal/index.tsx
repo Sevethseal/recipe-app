@@ -6,7 +6,8 @@ interface ConfirmationModalProps {
   content: string
   open: boolean
   onClose: () => void
-  onConfirm: () => void
+  onConfirm?: () => void
+  showOkButtonOnly?: boolean
 }
 
 const style = {
@@ -25,6 +26,7 @@ const ConfirmationModal = ({
   content,
   open,
   onConfirm,
+  showOkButtonOnly = false,
   onClose,
 }: ConfirmationModalProps) => {
   return (
@@ -46,12 +48,22 @@ const ConfirmationModal = ({
             {content}
           </Typography>
           <Box columnGap={2} display={'flex'} justifyContent={'flex-end'}>
-            <Button onClick={onConfirm} variant="outlined">
-              YES
-            </Button>
-            <Button onClick={onClose} variant="outlined">
-              NO
-            </Button>
+            {showOkButtonOnly ? (
+              <>
+                <Button onClick={onClose} variant="outlined">
+                  OK
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button onClick={onConfirm} variant="outlined">
+                  YES
+                </Button>
+                <Button onClick={onClose} variant="outlined">
+                  NO
+                </Button>
+              </>
+            )}
           </Box>
         </Box>
       </Box>
