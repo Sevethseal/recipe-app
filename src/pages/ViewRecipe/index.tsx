@@ -3,7 +3,7 @@ import './styles.css'
 import { Box, Stack, Typography } from '@mui/material'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchRecipe } from '../../sagas/reducer/recipe'
+import { clearRecipe, fetchRecipe } from '../../sagas/reducer/recipe'
 import { ReduxState } from '../../sagas/reducer/types'
 
 interface IngredientTableProps {
@@ -29,6 +29,9 @@ const ViewRecipe = () => {
   useEffect(() => {
     if (search) {
       dispatch(fetchRecipe(id))
+    }
+    return () => {
+      dispatch(clearRecipe())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search])

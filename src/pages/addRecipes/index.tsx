@@ -18,7 +18,7 @@ import { Box, Button, CircularProgress, Stack, TextField } from '@mui/material'
 import { TextareaAutosize } from '@mui/base'
 import { DatePicker } from '@mui/x-date-pickers'
 import styled from '@mui/styles/styled/styled'
-import { useForm, Controller, SubmitHandler } from 'react-hook-form'
+import { useForm, Controller, SubmitHandler, Resolver } from 'react-hook-form'
 import dayjs from 'dayjs'
 import ConfirmationModal from '../../components/ConfirmationModal'
 
@@ -60,7 +60,19 @@ const WhiteTextField = styled(TextField)({
     borderColor: 'white',
   },
 })
-
+const formValidation: Resolver<AddRecipeFormModel> = async (values) => {
+  return {
+    values,
+    errors: values.ingredientList.length
+      ? {}
+      : {
+          ingredient: {
+            type: 'required',
+            message: 'This is required.',
+          },
+        },
+  }
+}
 const AddRecipes = () => {
   const {
     control,
@@ -72,6 +84,7 @@ const AddRecipes = () => {
     formState: { errors },
   } = useForm<AddRecipeFormModel>({
     defaultValues: defaultValue,
+    resolver: formValidation,
   })
   const [ingredientList] = watch(['ingredientList'])
   const { search } = useLocation()
@@ -84,11 +97,12 @@ const AddRecipes = () => {
   const uniqueRecipeResponse = useSelector(
     (state: ReduxState) => state.uniqueRecipe.recipe
   )
+
   const isLoading = useSelector((state: ReduxState) => state.login.isLoading)
   const id = search.slice(4)
 
   const getUniqueRecipe = () => {
-    if (uniqueRecipeResponse) {
+    if (uniqueRecipeResponse && search) {
       const { category, directions, ingredient, name, publishDate, imageUrl } =
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (uniqueRecipeResponse as any).data()
@@ -331,7 +345,6 @@ const AddRecipes = () => {
               <Controller
                 name="ingredient"
                 control={control}
-                rules={{ required: 'Ingredients are required !' }}
                 render={({ field }) => (
                   <WhiteTextField
                     id="ingredient"
