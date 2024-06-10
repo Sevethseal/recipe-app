@@ -17,10 +17,7 @@
 .login__section {
   display: flex;
   align-items: flex-start;
-
   border-radius: 25px;
-  min-height: 25rem;
-  min-width: 50rem;
 }
 .login-section {
   background-color: white;
@@ -32,17 +29,13 @@
 }
 
 .login__heading-wrapper {
-  width: 100%;
   display: flex;
   align-items: center;
 }
 .login__credential {
   display: flex;
   flex-direction: column;
-  padding: 2.45rem;
-  min-height: 50rem;
-  min-width: 35rem;
-  width: 100%;
+  padding: 2rem;
   border-radius: 25px 0 0 25px;
   background-color: #f6f6f6;
 }
@@ -71,7 +64,8 @@
 }
 
 .login__cover-image {
-  width: 44rem;
+  max-width: 29.4rem;
+
   border-radius: 0 25px 25px 0;
 }
 
@@ -81,16 +75,14 @@
   height: 75%;
   gap: 10px;
 }
-.login__cover-image-wrapper {
-  width: 100%;
-}
+
 .login__sub-heading {
   font-family: 'Prata' !important;
   font-weight: bolder !important;
 }
 .login__text {
   font-family: 'Prata' !important;
-  font-size: 2.5rem !important;
+  font-size: 1.5rem !important;
 }
 .login__text-wrapper {
   margin-top: 2rem;

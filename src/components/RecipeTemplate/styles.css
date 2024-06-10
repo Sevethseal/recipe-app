@@ -55,3 +55,8 @@
 .css-1fzpoyk img {
   object-fit: cover !important;
 }
+
+#recipeDeleteIcon,
+#recipeEditIcon {
+  cursor: pointer;
+}

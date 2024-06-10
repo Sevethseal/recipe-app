@@ -58,8 +58,11 @@ const RecipeTemplate = ({ recipe, handleDelete }: RecipeTemplateProps) => {
           </div>
 
           <Box display={'flex'} justifyContent={'space-between'} width={'100%'}>
-            <ModeEditIcon onClick={() => history(`/create?id=${recipe.id}`)} />
-            <DeleteIcon onClick={handleDeleteModal} />
+            <ModeEditIcon
+              onClick={() => history(`/create?id=${recipe.id}`)}
+              id="recipeEditIcon"
+            />
+            <DeleteIcon onClick={handleDeleteModal} id="recipeDeleteIcon" />
           </Box>
         </Stack>
       </Stack>

@@ -115,7 +115,7 @@ const Login = () => {
             </Box>
           </form>
         </Box>
-        <Box className="login__cover-image-wrapper">
+        <Box>
           <img
             src={loginCover}
             alt="loginCover"
