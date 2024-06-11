@@ -1,9 +1,9 @@
-import loginReducer from "./login";
-import recipeReducer from "./recipe";
-import listRecipeReducer from "./recipeList";
-// eslint-disable-next-line import/no-anonymous-default-export
+import loginReducer from './login'
+import recipeReducer from './recipe'
+import listRecipeReducer from './recipeList'
+
 export default {
   login: loginReducer,
   uniqueRecipe: recipeReducer,
   recipeList: listRecipeReducer,
-};
+}

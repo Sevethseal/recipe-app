@@ -19,9 +19,12 @@ export function* authenticatedLoginSaga(
     )
     yield put(createLoginSuccess(result))
     action.navigate('/home')
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    alert(error.message)
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      alert(error.message)
+    } else {
+      alert('An unknown error occurred')
+    }
   }
 }
 
@@ -32,9 +35,12 @@ export function* authenticatedLoginGoogleSaga(
     const result: unknown = yield call(FireBaseAuthService.loginWithGoogle)
     yield put(createLoginSuccess(result))
     action.navigate('/home')
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    alert(error.message)
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      alert(error.message)
+    } else {
+      alert('An unknown error occurred')
+    }
   }
 }
 
@@ -42,8 +48,11 @@ export function* logOutSaga() {
   try {
     yield call(FireBaseAuthService.logOutUser)
     yield put(clearLoginSuccess())
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    alert(error.message)
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      alert(error.message)
+    } else {
+      alert('An unknown error occurred')
+    }
   }
 }

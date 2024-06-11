@@ -19,25 +19,34 @@ export const AuthProvider = ({ children }: AuthWrapperProps) => {
   const authenticatedLogin = async (email: string, password: string) => {
     try {
       await FireBaseAuthService.login(email, password)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      alert(error.message)
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert(error.message)
+      } else {
+        alert('An unknown error occurred')
+      }
     }
   }
   const authenticatedLoginGoogle = async () => {
     try {
       await FireBaseAuthService.loginWithGoogle()
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      alert(error.message)
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert(error.message)
+      } else {
+        alert('An unknown error occurred')
+      }
     }
   }
   const logOut = async () => {
     try {
       await FireBaseAuthService.logOutUser()
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      alert(error.message)
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert(error.message)
+      } else {
+        alert('An unknown error occurred')
+      }
     }
   }
   useEffect(() => {

@@ -1,6 +1,3 @@
-/* eslint-disable eslint-comments/disable-enable-pair */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react'
 import './styles.css'
 import { useNavigate } from 'react-router-dom'
@@ -28,6 +25,7 @@ const RecipeTemplate = ({ recipe, handleDelete }: RecipeTemplateProps) => {
         <img
           src={recipe.imageUrl.length > 1 ? recipe.imageUrl : recipeDefault}
           className="image"
+          alt="foodImage"
         />
       </Stack>
       <Stack className="recipe-template" key={recipe.id}>

@@ -5,6 +5,7 @@ export interface Recipe {
   imageUrl: string
   directions: string
   id: string
+  publishDate: Date
 }
 
 export interface RecipeTemplateProps {

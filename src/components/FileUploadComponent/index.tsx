@@ -9,16 +9,16 @@ const FileUploadComponent = ({
   handleUploadFinish,
   handleUploadCancel,
 }: FileUploadComponentProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const fileRef = useRef<any>()
-  const [imageUrl, setImageUrl] = useState('')
+  const fileRef = useRef<HTMLInputElement>(null)
+  const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [progress, setProgress] = useState(-1)
   useEffect(() => {
     if (existingUrl) {
       setImageUrl(existingUrl)
     } else {
       if (fileRef.current) {
-        fileRef.current.value = null
+        // eslint-disable-next-line @typescript-eslint/no-extra-semi
+        ;(fileRef.current.value as unknown as string | null) = null
       }
     }
   }, [existingUrl])
@@ -42,13 +42,16 @@ const FileUploadComponent = ({
     handleUploadFinish(downloadUrl)
   }
   const handleCancelImage = () => {
-    FirebaseStorageService.deleteFile(imageUrl)
-    if (fileRef.current) {
-      fileRef.current.value = null
+    if (imageUrl) {
+      FirebaseStorageService.deleteFile(imageUrl)
+      if (fileRef.current) {
+        // eslint-disable-next-line @typescript-eslint/no-extra-semi
+        ;(fileRef.current.value as unknown as string | null) = null
+      }
+      setImageUrl('')
+      setProgress(-1)
+      handleUploadCancel()
     }
-    setImageUrl('')
-    setProgress(-1)
-    handleUploadCancel()
   }
   return (
     <div>
