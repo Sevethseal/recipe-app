@@ -13,8 +13,8 @@
 }
 .recipe-box {
   max-width: 75rem;
-  min-width: 50rem;
-  border: 1px solid white;
+  min-width: 40rem;
+
   padding: 2rem;
   border-radius: 15px;
   display: flex;
@@ -38,4 +38,18 @@ textarea:focus {
 }
 textarea::placeholder {
   color: #fff;
+}
+.ingredient-box {
+  display: flex;
+  justify-content: flex-start;
+  padding: 2rem;
+  align-items: flex-start;
+}
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+}
+.ingredient-table-text {
+  word-break: break-all;
 }

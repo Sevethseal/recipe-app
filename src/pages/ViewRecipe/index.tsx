@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearRecipe, fetchRecipe } from '../../sagas/reducer/recipe'
 import { ReduxState } from '../../sagas/reducer/types'
+import { UniqueRecipeResponse } from './types'
 
 interface IngredientTableProps {
   ingredients: string[]
@@ -23,8 +24,9 @@ const ViewRecipe = () => {
     ingredient: ingredientList = [],
     name = '',
     publishDate = '',
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } = uniqueRecipeResponse ? (uniqueRecipeResponse as any)?.data() : {}
+  } = uniqueRecipeResponse
+    ? (uniqueRecipeResponse as UniqueRecipeResponse)?.data()
+    : {}
 
   useEffect(() => {
     if (search) {
@@ -33,8 +35,7 @@ const ViewRecipe = () => {
     return () => {
       dispatch(clearRecipe())
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search])
+  }, [dispatch, id, search])
 
   const IngredientTable = ({ ingredients }: IngredientTableProps) => (
     <Box className="recipe__ingredients-wrapper">

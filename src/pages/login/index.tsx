@@ -1,5 +1,3 @@
-/* eslint-disable eslint-comments/disable-enable-pair */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react'
 import FireBaseAuthService from '../../FireBaseAuthService'
 import { useAuth } from '../../components/AuthWrapper'
@@ -9,7 +7,6 @@ import loginCover from '../../assets/loginCover.webp'
 import './style.css'
 
 const Login = () => {
-  // eslint-disable-next-line no-unused-vars
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const history = useNavigate()
@@ -36,9 +33,12 @@ const Login = () => {
       try {
         await FireBaseAuthService.sendPasswordResetEmail(email)
         alert('reset email sent to your email')
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (error: any) {
-        alert(error.message)
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          alert(error.message)
+        } else {
+          alert('An unknown error occurred')
+        }
       }
     }
   }

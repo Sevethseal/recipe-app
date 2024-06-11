@@ -1,6 +1,4 @@
-/* eslint-disable eslint-comments/disable-enable-pair */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import RecipeTemplate from '../../components/RecipeTemplate'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteRecipe } from '../../sagas/reducer/recipe'
@@ -16,10 +14,10 @@ import {
   CircularProgress,
   Typography,
 } from '@mui/material'
+import { Recipe } from '../../components/RecipeTemplate/types'
 
 const ViewRecipes = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [recipes, setRecipes] = useState<any[]>([])
+  const [recipes, setRecipes] = useState<Recipe[]>([])
   const [byCategory, setByCategory] = useState('All')
   const [sortByOptions, setSortBy] = useState('Default')
 
@@ -29,7 +27,7 @@ const ViewRecipes = () => {
   )
   const isLoading = useSelector((state: ReduxState) => state.login.isLoading)
 
-  const getAllRecipeQueries = () => {
+  const getAllRecipeQueries = useCallback(() => {
     let sortOption = ''
     const orderByField = 'publishDate'
     switch (sortByOptions) {
@@ -63,7 +61,7 @@ const ViewRecipes = () => {
     } else {
       dispatch(fetchRecipeList([], orderByField, sortOption))
     }
-  }
+  }, [byCategory, dispatch, sortByOptions])
 
   const handleDelete = (id: string) => {
     dispatch(deleteRecipe(id))
@@ -76,13 +74,10 @@ const ViewRecipes = () => {
     } else {
       getAllRecipeQueries()
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [byCategory, sortByOptions])
+  }, [byCategory, getAllRecipeQueries, sortByOptions])
   useEffect(() => {
     if (recipeListResponse) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const recipes = (recipeListResponse as any).docs.map((docValues: any) => {
+      const recipes = recipeListResponse.docs.map((docValues) => {
         const id = docValues.id
         const data = docValues.data()
         return { ...data, id }

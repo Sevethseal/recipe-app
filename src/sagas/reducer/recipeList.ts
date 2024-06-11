@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux'
-import { ListRecipeReducer } from './types'
+import { ListRecipeReducer, RecipeListResponse } from './types'
 
 export const FETCH_RECIPE_LIST_ACTION = 'FETCH_RECIPE_LIST_ACTION'
 export const FETCH_RECIPE_LIST_ACTION_SUCCESS =
@@ -17,7 +17,9 @@ export const fetchRecipeList = (
   order,
 })
 
-export const fetchRecipeListSuccess = (recipeListResponse: unknown) => ({
+export const fetchRecipeListSuccess = (
+  recipeListResponse: RecipeListResponse | null
+) => ({
   type: FETCH_RECIPE_LIST_ACTION_SUCCESS,
   recipeListResponse,
 })

@@ -88,3 +88,6 @@
   display: flex;
   flex-direction: row !important;
 }
+.ingredient-table > th {
+  padding: 3px;
+}
